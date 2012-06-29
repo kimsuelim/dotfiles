@@ -1,0 +1,14 @@
+[user]
+	name = Surim Jin
+	email = kimsuelim@gmail.com
+[core]
+	excludesfile = /Users/kimsuelim/.gitignore_global
+	editor = vim -f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+	co = checkout

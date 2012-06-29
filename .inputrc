@@ -1,0 +1,20 @@
+# Allow 8-bit input/output
+set meta-flag on
+set convert-meta off
+set input-meta on
+set output-meta on
+"\C-v": paste-from-clipboard
+# don't beep at me
+# # set bell-style visible
+#
+# Home Key
+"\e[7~":beginning-of-line
+
+# End Key
+"\e[8~":end-of-line
+
+# Delete Key
+"\e[3~":delete-char
+
+# Insert Key
+"\e[2~":paste-from-clipboard
