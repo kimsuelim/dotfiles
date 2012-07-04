@@ -74,6 +74,30 @@ set colorcolumn=85
 "set list
 "set listchars=tab:▸\ ,eol:¬
 
+" Optimize autocomplete (snipmate, clan_complete, supertab)
+" Complete options (disable preview scratch window)
+set completeopt=menu,menuone,longest
+" Limit popup menu height
+"set pumheight=15
+
+" SuperTab option for context aware completion
+"let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+" Disable auto popup, use <Tab> to autocomplete
+let g:clang_complete_auto = 0
+" Show clang errors in the quickfix window
+let g:clang_complete_copen = 1
+
+"ruby
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
+highlight PMenu gui=bold guibg=#CECECE guifg=#444444
+
 " Disable arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -137,7 +161,6 @@ set modelines=0
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
  " let Vundle manage Vundle
  " required!
 Bundle 'glmarik/vundle'
@@ -151,6 +174,8 @@ Bundle 'repeat.vim'
 Bundle 'YankRing.vim'
 Bundle 'bundler'
 Bundle 'Tagbar'
+Bundle 'SuperTab-continued.'
+Bundle 'clang-complete'
 
 "Bundle 'msanders/snipmate.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
