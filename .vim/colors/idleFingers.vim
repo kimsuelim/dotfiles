@@ -38,11 +38,11 @@ hi LineNr               guifg=#888888
 hi MatchParen           guifg=#FFFFFF guibg=#666666
 hi ModeMsg              gui=NONE
 hi MoreMsg              guifg=#20b2aa
-hi NonText              guifg=#D8D8D8
+"hi NonText              guifg=#D8D8D8
 hi Normal               guibg=#282828 guifg=#D8D8D8
 hi Question             guifg=#ff6347
 hi Search               guifg=#000000 guibg=#ffd700
-hi SpecialKey           guifg=#00ffff
+"hi SpecialKey           guifg=#00ffff
 hi StatusLine           guifg=#f0e68c guibg=#000000
 hi StatusLineNC         guibg=#f0e68c guifg=#666666
 hi Title                guifg=#ff6347
@@ -50,6 +50,10 @@ hi Visual               guibg=#666666
 hi VisualNOS            guifg=#000000 guibg=fg
 hi WarningMsg           guifg=#D8D8D8 guibg=#ff6347
 hi WildMenu             guifg=#000000 guibg=#ffff00
+
+"Invisible character colors
+hi NonText guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
 
 
 " Colors for syntax highlighting

@@ -72,7 +72,9 @@ set colorcolumn=85
 "--------------------------------------------
 
 "set list
-"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬
+" Shortcut to rapidly toggle `set list`
+nnoremap <leader>l :set list!<CR>
 
 " Optimize autocomplete (snipmate, clan_complete, supertab)
 " Complete options (disable preview scratch window)
@@ -145,6 +147,9 @@ nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
 "--------------------------------------------
 
 if has("gui_running")
@@ -172,7 +177,7 @@ Bundle 'ack.vim'
 Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'YankRing.vim'
-Bundle 'bundler'
+"Bundle 'bundler'
 Bundle 'Tagbar'
 Bundle 'SuperTab-continued.'
 Bundle 'clang-complete'
@@ -208,16 +213,52 @@ filetype plugin indent on     " required!
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
 
-if v:progname =~? "evim"
-  finish
+" Tidying whitespace
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap _= :call Preserve("normal gg=G")<CR>
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
 endif
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+if has("autocmd")
+ " When editing a file, always jump to the last known cursor position.
+ " Don't do it when the position is invalid or when inside an event handler
+ " (happens when dropping a file on gvim).
+ " Also don't do it when the mark is in the first line, that is the default
+ " position when opening a file.
+ autocmd BufReadPost *
+       \ if line("'\"") > 1 && line("'\"") <= line("$") |
+       \   exe "normal! g`\"" |
+       \ endif
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
+  augroup END
 
-" This is an alternative that also works in block mode, but the deleted
-" text is lost and it only works for putting the current register.
-"vnoremap p "_dp
+ " Syntax of these languages is fussy over tabs Vs spaces
+  autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Customisations based on house-style (arbitrary)
+  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+
+  " Treat .rss files as XML
+  autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+  " run this command automatically when a file is saved
+  autocmd BufWritePre *.rb,*.erb,*.css,*.scss,*.html,*.py,*.js :call Preserve("%s/\\s\\+$//e")
+  
+endif

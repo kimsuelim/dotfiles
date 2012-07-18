@@ -7,3 +7,10 @@ export CLICOLOR=1export
 LSCOLORS=ExFxCxDxBxegedabagacadalias 
 ls="ls -v"
 alias ll="ls -lv"
+
+# Install the bash-completion package
+# and add follow lines
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+   . `brew --prefix`/etc/bash_completion
+fi
+
