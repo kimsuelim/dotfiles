@@ -14,3 +14,5 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
    . `brew --prefix`/etc/bash_completion
 fi
 
+# Use pry
+alias pryr="pry -r ./config/environment -r rails/console/app -r rails/console/helpers"
