@@ -183,6 +183,7 @@ Bundle 'git://github.com/tpope/vim-bundler.git'
 Bundle 'Tagbar'
 Bundle 'SuperTab-continued.'
 Bundle 'clang-complete'
+Bundle 'Conque-Shell'
 
 "Bundle 'msanders/snipmate.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
