@@ -155,6 +155,7 @@ inoremap <C-U> <C-G>u<C-U>
 if has("gui_running")
     set guifont=Monaco:h13
     set guifont=ProFontX:h13
+    set guioptions=-t
     colorscheme idleFingers
 endif
 
@@ -261,5 +262,8 @@ if has("autocmd")
 
   " run this command automatically when a file is saved
   autocmd BufWritePre *.rb,*.erb,*.css,*.scss,*.html,*.py,*.js :call Preserve("%s/\\s\\+$//e")
-  
+
+  au BufRead,BufNewFile *.rabl setf ruby 
+  "au BufRead,BufNewFile *.rabl syn keyword rubyRabl node attribute object child collection attributes glue extends
+  "au BufRead,BufNewFile *.rabl hi def link rubyRabl Function
 endif
