@@ -155,6 +155,7 @@ inoremap <C-U> <C-G>u<C-U>
 if has("gui_running")
     set guifont=Monaco:h13
     set guifont=ProFontX:h13
+
     set guioptions=-t
     colorscheme idleFingers
 endif
