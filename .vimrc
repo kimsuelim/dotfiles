@@ -10,68 +10,75 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
-set scrolloff=3
-set showmatch
-set laststatus=2
-set statusline=\(%n\)%<%f\ %h%m%r%=0x%B\ \ \ \ %-14.(%l,%c%V%)\ %P
-set number
+
+set nocompatible      " We're running Vim, not Vi!
+set laststatus=2                  " Show the status line all the time
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 syntax on
 
 set tags=./tags,./TAGS,tags,TAGS
 nmap <F8> :TagbarToggle<CR>
 
-set fileencodings=ucs-bom,utf-8,korea,iso-2022-kr
+"set fileencodings=ucs-bom,utf-8,korea,iso-2022-kr
+set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
 
 set softtabstop=2
-set tabstop=2 " like emacs tab-width variable
-set shiftwidth=2 "like emacs c-basic-offset variable
+set tabstop=2                     " Like emacs tab-width variable
+set shiftwidth=2                  " Like emacs c-basic-offset variable
+set expandtab                     " Use spaces, not tabs (optional)
+set backspace=indent,eol,start    " Backspace through everything in insert mode"
 "set smarttab
-set expandtab "like emacs indent-tabs-mode nil
-set autoindent
+set autoindent                    " Match indentation of previous line
 set smartindent
 set et
 
-set hidden
-set wildmenu
-set wildmode=list:longest
+set showcmd                       " Display incomplete commands.
+set showmode                      " Display the mode you're in.
+set showmatch                     " Show matching brackets/parenthesis
+set hidden                        " Handle multiple buffers better.
+set title                         " Set the terminal's title
+set number                        " Show line numbers.
+set ruler		                      " Show the cursor position all the time
+set scrolloff=3
+set wildmode=list:longest         " Complete files like a shell.
+set wildmenu                      " Enhanced command line completion.
+set wildignore=*.o,*.obj,*~       " Stuff to ignore when tab completing
 set visualbell
+set noerrorbells
 set cursorline
 set ttyfast
-set backspace=indent,eol,start
 set relativenumber
 set undofile
 
-set nobackup		" do not keep a backup file, use versions instead
+set nobackup                      " Don't make a backup before overwriting a file.
 set noswapfile
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set showmode
+set history=50		                " Keep 50 lines of command line history
 set clipboard=unnamed
 
-" searching/moving
+" Searching/moving
 nnoremap / /\v
 vnoremap / /\v
-set ignorecase
-set smartcase
+set incsearch                     " Find as you type search
+set hlsearch                      " Highlight search terms
+set ignorecase                    " Case-insensitive searching.
+set smartcase                     " But case-sensitive if expression contains a capital letter.
 set gdefault
-set incsearch		" do incremental searching
-set incsearch
-set showmatch
-set hlsearch
-"--------------------------------------------
 
-"handle long lines correctly
-set wrap
+" Handle long lines correctly
+"set wrap
+set nowrap                        " Don't wrap lines
 set linebreak
 set textwidth=80
 set formatoptions=qrn1
 set colorcolumn=85
-"--------------------------------------------
 
-"set list
+set foldmethod=indent             " Fold based on indent
+set foldnestmax=3                 " Deepest fold is 3 levels
+set nofoldenable                  " Don't fold by default
+
+" Set list
 set listchars=tab:▸\ ,eol:¬
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
@@ -91,14 +98,15 @@ let g:clang_complete_auto = 0
 " Show clang errors in the quickfix window
 let g:clang_complete_copen = 1
 
-"ruby
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-"improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
+" Ruby
+"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+" Improve autocomplete menu color
 highlight PMenu gui=bold guibg=#CECECE guifg=#444444
+highlight Pmenu ctermbg=238 gui=bold
 
 " Disable arrow keys
 nnoremap <up> <nop>
@@ -118,7 +126,7 @@ nnoremap ; :
 au FocusLost * :wa
 inoremap jj <ESC>
 
-" split windows
+" Split windows
 nnoremap <leader>w <C-w><C-v><C-l>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -131,10 +139,10 @@ inoremap <silent> <F3> <ESC>:YRShow<cr>
 
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
-" strip all trailing whitespace in the current file
+" Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>A :Ack
-"I work with HTML often, so I have ,ft mapped to a “fold tag” function
+" I work with HTML often, so I have ,ft mapped to a “fold tag” function
 nnoremap <leader>ft Vatzf
 " I also work with Nick Sergeant and he likes his CSS properties sorted, so here’s a ,S mapping that sorts them for me
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
@@ -158,9 +166,8 @@ if has("gui_running")
 
     set guioptions=-t
     colorscheme idleFingers
+    "colorscheme desert
 endif
-
-colorscheme desert
 
 filetype off                   " required!
 "call pathogen#runtime_append_all_bundles()
@@ -168,23 +175,55 @@ set modelines=0
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
- " let Vundle manage Vundle
- " required!
+
+" let Vundle manage Vundle
 Bundle 'glmarik/vundle'
 
- " My Bundles here:
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-git'
+Bundle 'vim-ruby/vim-ruby'
+compiler ruby         " Enable compiler support for ruby
+Bundle 'nelstrom/vim-textobj-rubyblock'
+" Trigger by press var and vir
+Bundle 'kana/vim-textobj-user'
+
 Bundle 'scrooloose/nerdtree'
-Bundle 'The-NERD-Commenter'
-Bundle 'ack.vim'
-Bundle 'surround.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+
+Bundle 'othree/html5.vim'
+Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+"Bundle 'hail2u/vim-css3-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+
+" Pasting in Vim with indentation adjusted to destination context.
+Bundle 'sickill/vim-pasta'
+
+" Automatic closing of quotes, parenthesis, brackets, etc. 
+Bundle 'Raimondi/delimitMate'
+
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'ervandew/supertab'
 Bundle 'repeat.vim'
 Bundle 'YankRing.vim'
-"Bundle 'bundler'
-Bundle 'git://github.com/tpope/vim-bundler.git'
 Bundle 'Tagbar'
-Bundle 'SuperTab-continued.'
 Bundle 'clang-complete'
-Bundle 'Conque-Shell'
+
+" Bumped to version 2.3
+Bundle 'kimsuelim/Conque-Shell'
 
 "Bundle 'msanders/snipmate.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -192,30 +231,62 @@ Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 
-Bundle 'matchit.zip'
-Bundle 'HTML5-Syntax-File'
-
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+" Extend % function to ruby or python and etc...
+Bundle 'vim-scripts/matchit.zip'      
+" redefines 6 search commands (/,?,n,N,*,#). At every 
+" search command, it automatically prints 
+" At match #N out of M matches". 
+" press \\ => for Checking At which Match Number You Are
+Bundle 'vim-scripts/IndexedSearch'    
+Bundle 'vim-scripts/L9.git'
+Bundle 'vim-scripts/FuzzyFinder'
+
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
-filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+filetype plugin indent on         " load file type plugins + indentation
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+
+" *********************************************
+" *           Plugin Customization            *
+" *********************************************
+
+"# ctrlp.vim
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
+
+"# othree/html5.vim
+"Disable event-handler attributes support:
+let g:html5_event_handler_attributes_complete = 0
+
+"Disable RDFa attributes support:
+let g:html5_rdfa_attributes_complete = 0
+
+"Disable microdata attributes support:
+let g:html5_microdata_attributes_complete = 0
+
+"Disable WAI-ARIA attribute support:
+let g:html5_aria_attributes_complete = 0
+
+
+"# kien/rainbow_parentheses.vim
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+"au Syntax * RainbowParenthesesLoadChevrons
+
 
 " Tidying whitespace
 function! Preserve(command)
@@ -266,6 +337,9 @@ if has("autocmd")
   autocmd BufWritePre *.rb,*.erb,*.css,*.scss,*.html,*.py,*.js :call Preserve("%s/\\s\\+$//e")
 
   au BufRead,BufNewFile *.rabl setf ruby 
-  "au BufRead,BufNewFile *.rabl syn keyword rubyRabl node attribute object child collection attributes glue extends
-  "au BufRead,BufNewFile *.rabl hi def link rubyRabl Function
+  au BufRead,BufNewFile *.rabl syn keyword rubyRabl node attribute object child collection attributes glue extends
+  au BufRead,BufNewFile *.rabl hi def link rubyRabl Function
+
+  " Better CSS Syntax for Vim
+  au BufRead,BufNewFile *.sass set filetype=css
 endif

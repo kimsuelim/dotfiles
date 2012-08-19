@@ -106,7 +106,7 @@ hi Error                guifg=#D8D8D8 guibg=#ff0000
 hi Todo                 guifg=#323232 guibg=#BC9458
 
 " Helps colorize FuzzyFileFinder
-hi Pmenu                guibg=#999999 guifg=#000000
+hi PMenu gui=bold guibg=#CECECE guifg=#444444
 hi PmenuSel             guibg=#333333 guifg=#CCCCCC
 
 " Ruby syntax
