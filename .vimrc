@@ -58,8 +58,6 @@ set history=50		                " Keep 50 lines of command line history
 set clipboard=unnamed
 
 " Searching/moving
-nnoremap / /\v
-vnoremap / /\v
 set incsearch                     " Find as you type search
 set hlsearch                      " Highlight search terms
 set ignorecase                    " Case-insensitive searching.
@@ -154,6 +152,8 @@ nnoremap <leader>v V`]
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 nnoremap <tab> %
 vnoremap <tab> %
+nnoremap / /\v
+vnoremap / /\v
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -186,6 +186,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
@@ -220,7 +221,6 @@ Bundle 'Raimondi/delimitMate'
 
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'ervandew/supertab'
-Bundle 'repeat.vim'
 Bundle 'YankRing.vim'
 Bundle 'Tagbar'
 Bundle 'clang-complete'
