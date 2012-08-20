@@ -125,7 +125,7 @@ au FocusLost * :wa
 inoremap jj <ESC>
 
 " Split windows
-nnoremap <leader>w <C-w><C-v><C-l>
+nnoremap <leader>W <C-w><C-v><C-l>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -207,7 +207,7 @@ Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 "Bundle 'hail2u/vim-css3-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'mattn/zencoding-vim'
 
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
@@ -216,7 +216,7 @@ Bundle 'mileszs/ack.vim'
 " Pasting in Vim with indentation adjusted to destination context.
 Bundle 'sickill/vim-pasta'
 
-" Automatic closing of quotes, parenthesis, brackets, etc. 
+" Automatic closing of quotes, parenthesis, brackets, etc.
 Bundle 'Raimondi/delimitMate'
 
 Bundle 'kien/rainbow_parentheses.vim'
@@ -236,12 +236,12 @@ Bundle "garbas/vim-snipmate"
 
 " vim-scripts repos
 " Extend % function to ruby or python and etc...
-Bundle 'vim-scripts/matchit.zip'      
-" redefines 6 search commands (/,?,n,N,*,#). At every 
-" search command, it automatically prints 
-" At match #N out of M matches". 
+Bundle 'vim-scripts/matchit.zip'
+" redefines 6 search commands (/,?,n,N,*,#). At every
+" search command, it automatically prints
+" At match #N out of M matches".
 " press \\ => for Checking At which Match Number You Are
-Bundle 'vim-scripts/IndexedSearch'    
+Bundle 'vim-scripts/IndexedSearch'
 Bundle 'vim-scripts/L9.git'
 Bundle 'vim-scripts/FuzzyFinder'
 
@@ -337,9 +337,9 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 
   " run this command automatically when a file is saved
-  autocmd BufWritePre *.rb,*.erb,*.css,*.scss,*.html,*.py,*.js :call Preserve("%s/\\s\\+$//e")
+  autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
 
-  au BufRead,BufNewFile *.rabl setf ruby 
+  au BufRead,BufNewFile *.rabl setf ruby
   au BufRead,BufNewFile *.rabl syn keyword rubyRabl node attribute object child collection attributes glue extends
   au BufRead,BufNewFile *.rabl hi def link rubyRabl Function
 
