@@ -4,6 +4,8 @@ eval "$(rbenv init -)"
 
 export TERM="xterm-color"
 export CLICOLOR=1export
+export EDITOR="mvim"
+
 LSCOLORS=ExFxCxDxBxegedabagacadalias 
 ls="ls -v"
 alias ll="ls -lv"
