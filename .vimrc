@@ -13,7 +13,7 @@
 
 set nocompatible      " We're running Vim, not Vi!
 set laststatus=2                  " Show the status line all the time
-set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+"set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 syntax on
 
 set tags=./tags,./TAGS,tags,TAGS
@@ -189,7 +189,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-cucumber'
+"Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-git'
 Bundle 'vim-ruby/vim-ruby'
@@ -228,7 +228,6 @@ Bundle 'clang-complete'
 " Bumped to version 2.3
 Bundle 'kimsuelim/Conque-Shell'
 
-"Bundle 'msanders/snipmate.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"

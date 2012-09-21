@@ -1,4 +1,4 @@
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:$PATH
 eval "$(rbenv init -)"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
