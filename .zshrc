@@ -29,12 +29,14 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler brew gem rbenv)
+plugins=(git bundler brew gem)
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(rbenv init -)"
+
 # Customize to your needs...
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:$PATH
+export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
 
 # Use pry
