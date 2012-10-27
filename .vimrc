@@ -13,7 +13,7 @@
 
 set nocompatible      " We're running Vim, not Vi!
 set laststatus=2                  " Show the status line all the time
-"set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 syntax on
 
 set tags=./tags,./TAGS,tags,TAGS
@@ -202,6 +202,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 
+Bundle 'miripiruni/CSScomb-for-Vim'
 Bundle 'othree/html5.vim'
 "Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 "Bundle 'hail2u/vim-css3-syntax'

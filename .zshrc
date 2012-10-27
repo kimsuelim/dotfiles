@@ -33,8 +33,10 @@ plugins=(brew bundler cap gem git vundle vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(rbenv init -)"
+
 # Customize to your needs...
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:$PATH
+export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
 
 # Use pry
