@@ -164,8 +164,8 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 "--------------------------------------------
 
 if has("gui_running")
-    set guifont=Monaco:h13
-    set guifont=ProFontX:h13
+    set guifont=Monaco:h11
+    "set guifont=ProFontX:h13
 
     set guioptions=-t
     colorscheme idleFingers
