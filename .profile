@@ -13,9 +13,9 @@
 #alias ucloud="ssh -i ~/.ssh/id_rsa deployer@zomoim.com"
 #alias home="ssh -i ~/.ssh/id_rsa kimsuelim@surimjin.iptime.org"
 
-alias linkyt="mosh linkyt@192.168.0.9"
-alias ucloud="mosh deployer@zomoim.com"
-alias home="mosh kimsuelim@surimjin.iptime.org"
+alias linkyt="mosh linkyt@192.168.0.9 -- tmux attach"
+alias ucloud="mosh deployer@zomoim.com -- tmux attach"
+alias home="mosh kimsuelim@surimjin.iptime.org -- tmux attach"
 
 export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 export LANG=en_US.UTF-8
