@@ -164,12 +164,15 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 "--------------------------------------------
 
 if has("gui_running")
+    set background=dark
     set guifont=Monaco:h11
     "set guifont=ProFontX:h13
 
     set guioptions=-t
     colorscheme idleFingers
-    "colorscheme desert
+else
+  set background=dark
+  colorscheme desert
 endif
 
 filetype off                   " required!
@@ -181,6 +184,10 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 Bundle 'glmarik/vundle'
+
+Bundle 'jgdavey/tslime.vim'
+Bundle 'jgdavey/vim-turbux'
+Bundle 'benmills/vimux'
 
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
@@ -291,6 +298,10 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "au Syntax * RainbowParenthesesLoadChevrons
 
+" tslime
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 " Tidying whitespace
 function! Preserve(command)

@@ -39,6 +39,9 @@ eval "$(rbenv init -)"
 export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
 
+# tmux
+alias tmux="TERM=screen-256color-bce tmux"
+
 # Use pry
 alias pryr="pry -r ./config/environment -r rails/console/app -r rails/console/helpers"
 
