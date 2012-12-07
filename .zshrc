@@ -35,6 +35,10 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(rbenv init -)"
 
+# make Rails even faster, but will increase its memory footprint
+export RUBY_GC_MALLOC_LIMIT=60000000
+export RUBY_FREE_MIN=200000
+
 # Customize to your needs...
 export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
@@ -44,6 +48,11 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 # Use pry
 alias pryr="pry -r ./config/environment -r rails/console/app -r rails/console/helpers"
+
+# postgresql
+alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pg_stop="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop"
+alias pg_restart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log restart"
 
 alias linkyt_ssh="ssh -i ~/.ssh/id_rsa linkyt@192.168.0.9"
 alias ucloud_ssh="ssh -i ~/.ssh/id_rsa deployer@zomoim.com"
