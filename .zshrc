@@ -51,14 +51,14 @@ alias pryr="pry -r ./config/environment -r rails/console/app -r rails/console/he
 
 # postgresql
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-alias pg_stop="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop"
-alias pg_restart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log restart"
+alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
+alias pg_restart="pg_ctl -D /usr/local/var/postgres restart"
 
-alias linkyt_ssh="ssh -i ~/.ssh/id_rsa linkyt@192.168.0.9"
+alias linkyt_ssh="ssh -i ~/.ssh/id_rsa linkyt@192.168.0.25"
 alias ucloud_ssh="ssh -i ~/.ssh/id_rsa deployer@zomoim.com"
 alias home_ssh="ssh -i ~/.ssh/id_rsa kimsuelim@surimjin.iptime.org"
 
-alias linkyt="mosh linkyt@192.168.0.9 -- tmux attach"
+alias linkyt="mosh linkyt@192.168.0.25 -- tmux attach"
 alias ucloud="mosh deployer@zomoim.com -- tmux attach"
 alias home="mosh kimsuelim@surimjin.iptime.org -- tmux attach"
 
