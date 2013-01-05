@@ -54,13 +54,16 @@ alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/ser
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
 alias pg_restart="pg_ctl -D /usr/local/var/postgres restart"
 
-alias linkyt_ssh="ssh -i ~/.ssh/id_rsa linkyt@192.168.0.25"
+#alias linkyt_ssh="ssh -i ~/.ssh/id_rsa linkyt@192.168.0.25"
+alias linkyt_mosh="mosh linkyt@192.168.0.25"
 alias ucloud_ssh="ssh -i ~/.ssh/id_rsa deployer@zomoim.com"
 alias home_ssh="ssh -i ~/.ssh/id_rsa kimsuelim@surimjin.iptime.org"
+alias ec2_mosh='mosh --ssh="ssh -i ~/.ssh/id_rsa_ec2" ubuntu@ec2-54-248-21-116.ap-northeast-1.compute.amazonaws.com'
 
 alias linkyt="mosh linkyt@192.168.0.25 -- tmux attach"
 alias ucloud="mosh deployer@zomoim.com -- tmux attach"
 alias home="mosh kimsuelim@surimjin.iptime.org -- tmux attach"
+alias ec2='mosh --ssh="ssh -i ~/.ssh/id_rsa_ec2" ubuntu@ec2-54-248-21-116.ap-northeast-1.compute.amazonaws.com -- tmux attach'
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
