@@ -185,7 +185,6 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'glmarik/vundle'
 
-Bundle 'jgdavey/tslime.vim'
 Bundle 'jgdavey/vim-turbux'
 Bundle 'benmills/vimux'
 
@@ -296,10 +295,9 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "au Syntax * RainbowParenthesesLoadChevrons
 
-" tslime
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
+" vimux
+let g:VimuxHeight = "30"
+let g:VimuxOrientation = "h"
 
 " Tidying whitespace
 function! Preserve(command)

@@ -1,5 +1,5 @@
 require "rubygems"
-require "awesome_print"
+#require "awesome_print"
 
 #Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
 
