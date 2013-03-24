@@ -12,7 +12,6 @@
 " When started as "evim", evim.vim will already have done these settings.
 
 set nocompatible      " We're running Vim, not Vi!
-set laststatus=2                  " Show the status line all the time
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 syntax on
 
@@ -20,9 +19,10 @@ set tags=./tags,./TAGS,tags,TAGS
 nmap <F8> :TagbarToggle<CR>
 
 "set fileencodings=ucs-bom,utf-8,korea,iso-2022-kr
-set fileencodings=utf-8
-set termencoding=utf-8
+set fileencodings=utf-8,korea,iso-2022-kr
+set termencoding=utf-8,korea,iso-2022-kr
 set encoding=utf-8
+set fileformats=unix,dos,mac
 
 set softtabstop=2
 set tabstop=2                     " Like emacs tab-width variable
@@ -33,6 +33,7 @@ set backspace=indent,eol,start    " Backspace through everything in insert mode"
 set autoindent                    " Match indentation of previous line
 set smartindent
 set et
+set backspace=2                   " make backspace work like most other apps"
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -42,16 +43,18 @@ set title                         " Set the terminal's title
 set number                        " Show line numbers.
 set ruler		                      " Show the cursor position all the time
 set scrolloff=3
-set wildmode=list:longest         " Complete files like a shell.
 set wildmenu                      " Enhanced command line completion.
+set wildmode=list:longest         " Complete files like a shell.
 set wildignore=*.o,*.obj,*~       " Stuff to ignore when tab completing
 set visualbell
 set noerrorbells
-set cursorline
+set laststatus=2                  " Show the status line all the time
 set ttyfast
-set relativenumber
-set undofile
+set lazyredraw
+"set cursorline
+"set relativenumber
 
+set undofile
 set nobackup                      " Don't make a backup before overwriting a file.
 set noswapfile
 set history=50		                " Keep 50 lines of command line history
@@ -72,12 +75,9 @@ set textwidth=80
 set formatoptions=qrn1
 set colorcolumn=85
 
-set foldmethod=indent             " Fold based on indent
-set foldnestmax=3                 " Deepest fold is 3 levels
-set nofoldenable                  " Don't fold by default
-
 " Set list
 set listchars=tab:▸\ ,eol:¬
+
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
 
@@ -96,11 +96,15 @@ let g:clang_complete_auto = 0
 " Show clang errors in the quickfix window
 let g:clang_complete_copen = 1
 
-" Ruby
-"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" vim-ruby
+let g:ruby_operators = 1
+let g:ruby_space_errors = 1
+let g:ruby_fold = 0
+let g:ruby_no_expensive = 1
+let g:ruby_minlines = 500
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
 
 " Improve autocomplete menu color
 highlight PMenu gui=bold guibg=#CECECE guifg=#444444
@@ -120,7 +124,7 @@ nnoremap k gk
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-nnoremap ; :
+"nnoremap ; :
 au FocusLost * :wa
 inoremap jj <ESC>
 
@@ -163,17 +167,6 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 "--------------------------------------------
 
-if has("gui_running")
-    set background=dark
-    set guifont=Monaco:h11
-    "set guifont=ProFontX:h13
-
-    set guioptions=-t
-    colorscheme idleFingers
-else
-  set background=dark
-  colorscheme desert
-endif
 
 filetype off                   " required!
 "call pathogen#runtime_append_all_bundles()
@@ -203,6 +196,9 @@ compiler ruby         " Enable compiler support for ruby
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " Trigger by press var and vir
 Bundle 'kana/vim-textobj-user'
+Bundle 'nono/vim-handlebars'
+
+Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -269,6 +265,20 @@ filetype plugin indent on         " load file type plugins + indentation
 " *           Plugin Customization            *
 " *********************************************
 
+if has("gui_running")
+  set background=dark
+    set guifont=Monaco:h11
+    "set guifont=ProFontX:h13
+
+    set guioptions=-t
+    "colorscheme idleFingers
+    colorscheme solarized
+else
+  set background=dark
+  colorscheme desert
+  "colorscheme solarized
+endif
+
 "# ctrlp.vim
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
 
@@ -298,6 +308,11 @@ au Syntax * RainbowParenthesesLoadBraces
 " vimux
 let g:VimuxHeight = "30"
 let g:VimuxOrientation = "h"
+
+" turbux
+"let g:turbux_command_prefix = 'bundle exec'
+let g:turbux_command_test_unit = 'spring test'
+"let g:turbux_command_test_unit = 'bin/test'
 
 " Tidying whitespace
 function! Preserve(command)

@@ -12,3 +12,5 @@
 	trustExitCode = true
 [alias]
 	co = checkout
+[color]
+	ui = true

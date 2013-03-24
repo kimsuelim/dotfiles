@@ -36,8 +36,8 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init -)"
 
 # make Rails even faster, but will increase its memory footprint
-export RUBY_GC_MALLOC_LIMIT=60000000
-export RUBY_FREE_MIN=200000
+#export RUBY_GC_MALLOC_LIMIT=60000000
+#export RUBY_FREE_MIN=200000
 
 # Customize to your needs...
 export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
@@ -45,6 +45,10 @@ export EDITOR="mvim"
 
 # tmux
 alias tmux="TERM=screen-256color-bce tmux"
+
+# macvim
+alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 
 # Use pry
 alias pryr="pry -r ./config/environment -r rails/console/app -r rails/console/helpers"

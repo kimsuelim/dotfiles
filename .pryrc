@@ -1,7 +1,4 @@
 require "rubygems"
-#require "awesome_print"
-
-#Pry.config.print = proc { |output, value| Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output) }
 
 begin
   require 'hirb'
@@ -9,25 +6,31 @@ rescue LoadError
   # Missing goodies, bummer
 end
 
-if defined? Hirb
-  # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
-  Hirb::View.instance_eval do
-    def enable_output_method
-      @output_method = true
-      @old_print = Pry.config.print
-      Pry.config.print = proc do |output, value|
-        Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
-      end
-    end
+#Hirb.enable
 
-    def disable_output_method
-      Pry.config.print = @old_print
-      @output_method = nil
-    end
-  end
+#old_print = Pry.config.print
+#Pry.config.print = proc do |output, value|
+  #Hirb::View.view_or_page_output(value) || old_print.call(output, value)
+#end
 
-  Hirb.enable
-end
+#if defined? Hirb
+  ## Dirty hack to support in-session Hirb.disable/enable
+  #Hirb::View.instance_eval do
+    #def enable_output_method
+      #@output_method = true
+      #Pry.config.print = proc do |output, value|
+        #Hirb::View.view_or_page_output(value) || Pry::DEFAULT_PRINT.call(output, value)
+      #end
+    #end
+
+    #def disable_output_method
+      #Pry.config.print = proc { |output, value| Pry::DEFAULT_PRINT.call(output, value) }
+      #@output_method = nil
+    #end
+  #end
+
+  #Hirb.enable
+#end
 
 if defined?(Rails) && Rails.env
   extend Rails::ConsoleMethods
