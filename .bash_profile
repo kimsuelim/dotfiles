@@ -2,6 +2,9 @@ export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbi
 eval "$(rbenv init -)"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source
+$HOME/.tmuxinator/scripts/tmuxinator
+
 export TERM="xterm-color"
 export CLICOLOR=1export
 export EDITOR="mvim"

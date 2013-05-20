@@ -188,6 +188,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-bundler'
+"Bundle 'tpope/vim-dispatch'
 "Bundle 'tpope/vim-cucumber'
 "Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-git'
@@ -234,6 +235,9 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
+
+" Erlang
+Bundle "jimenezrick/vimerl"
 
 " vim-scripts repos
 " Extend % function to ruby or python and etc...
@@ -311,7 +315,8 @@ let g:VimuxOrientation = "h"
 
 " turbux
 "let g:turbux_command_prefix = 'bundle exec'
-let g:turbux_command_test_unit = 'spring test'
+"let g:turbux_command_test_unit = 'spring testunit'
+"let g:turbux_command_test_unit = 'zeus testrb'
 "let g:turbux_command_test_unit = 'bin/test'
 
 " Tidying whitespace
