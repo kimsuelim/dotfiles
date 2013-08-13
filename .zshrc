@@ -42,6 +42,7 @@ eval "$(rbenv init -)"
 # Customize to your needs...
 export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
+export DISABLE_AUTO_TITLE=true
 
 # tmux
 alias tmux="TERM=screen-256color-bce tmux"

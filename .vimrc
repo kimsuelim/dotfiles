@@ -12,7 +12,7 @@
 " When started as "evim", evim.vim will already have done these settings.
 
 set nocompatible      " We're running Vim, not Vi!
-set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+set statusline=%{fugitive#statusline()}\ %<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 syntax on
 
 set tags=./tags,./TAGS,tags,TAGS
@@ -228,9 +228,6 @@ Bundle 'YankRing.vim'
 Bundle 'Tagbar'
 Bundle 'clang-complete'
 
-" Bumped to version 2.3
-Bundle 'kimsuelim/Conque-Shell'
-
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
@@ -246,12 +243,6 @@ Bundle 'vim-scripts/matchit.zip'
 " search command, it automatically prints
 " At match #N out of M matches".
 " press \\ => for Checking At which Match Number You Are
-Bundle 'vim-scripts/IndexedSearch'
-Bundle 'vim-scripts/L9.git'
-Bundle 'vim-scripts/FuzzyFinder'
-
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on         " load file type plugins + indentation
 "
@@ -271,16 +262,27 @@ filetype plugin indent on         " load file type plugins + indentation
 
 if has("gui_running")
   set background=dark
-    set guifont=Monaco:h11
+    set guifont=Monaco:h13
     "set guifont=ProFontX:h13
 
     set guioptions=-t
     "colorscheme idleFingers
-    colorscheme solarized
+    "colorscheme solarized
+    "colorscheme Tomorrow
+    "colorscheme Tomorrow-Night
+    "colorscheme Tomorrow-Night-Eighties
+    colorscheme Tomorrow-Night-Bright
+    "colorscheme Tomorrow-Night-Blue
+
 else
   set background=dark
-  colorscheme desert
+  "colorscheme desert
   "colorscheme solarized
+  "colorscheme Tomorrow
+  "colorscheme Tomorrow-Night
+  "colorscheme Tomorrow-Night-Eighties
+  colorscheme Tomorrow-Night-Bright
+  "colorscheme Tomorrow-Night-Blue
 endif
 
 "# ctrlp.vim
@@ -315,7 +317,7 @@ let g:VimuxOrientation = "h"
 
 " turbux
 "let g:turbux_command_prefix = 'bundle exec'
-"let g:turbux_command_test_unit = 'spring testunit'
+let g:turbux_command_test_unit = 'spring testunit'
 "let g:turbux_command_test_unit = 'zeus testrb'
 "let g:turbux_command_test_unit = 'bin/test'
 

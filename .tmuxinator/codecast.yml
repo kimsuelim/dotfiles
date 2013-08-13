@@ -1,9 +1,9 @@
-# ~/.tmuxinator/zipbob.yml
+# ~/.tmuxinator/codecast.yml
 # you can make as many tabs as you wish...
 
-name: zipbob
-root: ~/Documents/dev/zipbob.net
-pre_window: rbenv shell 1.9.3-p448
+name: codecast
+root: ~/Documents/dev/codecast
+pre_window: rbenv shell 2.0.0-p247
 
 windows:
   - editor: vi
@@ -17,4 +17,4 @@ windows:
   - database: rails db
   - logs: tail -f log/development.log
   - capistrano:
-  - server: ssh deployer@zipbob.net
+  - server: 
