@@ -188,7 +188,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-bundler'
-"Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-dispatch'
 "Bundle 'tpope/vim-cucumber'
 "Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-git'
@@ -208,9 +208,10 @@ Bundle 'scrooloose/syntastic'
 Bundle 'miripiruni/CSScomb-for-Vim'
 Bundle 'othree/html5.vim'
 Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-Bundle 'pangloss/vim-javascript'
+"Bundle 'pangloss/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'mattn/zencoding-vim'
+"Bundle 'mattn/zencoding-vim'
 
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
@@ -262,26 +263,27 @@ filetype plugin indent on         " load file type plugins + indentation
 
 if has("gui_running")
   set background=dark
-    set guifont=Monaco:h13
-    "set guifont=ProFontX:h13
+  set guifont=Monaco:h11
+  "set guifont=ProFontX:h13
 
-    set guioptions=-t
-    "colorscheme idleFingers
-    "colorscheme solarized
-    "colorscheme Tomorrow
-    "colorscheme Tomorrow-Night
-    "colorscheme Tomorrow-Night-Eighties
-    colorscheme Tomorrow-Night-Bright
-    "colorscheme Tomorrow-Night-Blue
-
+  set guioptions=-t
+  "colorscheme desert
+  "colorscheme idleFingers
+  "colorscheme solarized
+  "colorscheme Tomorrow
+  colorscheme Tomorrow-Night
+  "colorscheme Tomorrow-Night-Eighties
+  "colorscheme Tomorrow-Night-Bright
+  "colorscheme Tomorrow-Night-Blue
 else
   set background=dark
+  "colorscheme idleFingers
   "colorscheme desert
   "colorscheme solarized
   "colorscheme Tomorrow
-  "colorscheme Tomorrow-Night
+  colorscheme Tomorrow-Night
   "colorscheme Tomorrow-Night-Eighties
-  colorscheme Tomorrow-Night-Bright
+  "colorscheme Tomorrow-Night-Bright
   "colorscheme Tomorrow-Night-Blue
 endif
 
@@ -317,7 +319,8 @@ let g:VimuxOrientation = "h"
 
 " turbux
 "let g:turbux_command_prefix = 'bundle exec'
-let g:turbux_command_test_unit = 'spring testunit'
+"let g:turbux_command_test_unit = 'spring testunit'
+let g:turbux_command_test_unit = 'rake test'
 "let g:turbux_command_test_unit = 'zeus testrb'
 "let g:turbux_command_test_unit = 'bin/test'
 

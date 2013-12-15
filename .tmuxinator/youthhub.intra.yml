@@ -1,0 +1,27 @@
+# ~/.tmuxinator/zipbob.yml
+# you can make as many tabs as you wish...
+
+project_name: youthhub.intra
+project_root: ~/Documents/dev/youthhub.intra
+#socket_name: foo # Not needed.  Remove to use default socket
+#rvm: 1.9.2@rails_project
+#rbenv: 1.9.3-p392
+#pre: export RBENV_VERSION=1.9.3-p392
+pre:
+  - export RBENV_DIR=
+  - export RBENV_VERSION=
+
+tabs:
+  - editor: vi
+      #layout: main-vertical
+      #panes:
+        #- vi
+        #- #empty, will just run plain bash
+        #- top
+  - shell: 
+  #- database: rails db
+  - server: spring rails s
+  - console: spring rails c
+  - logs: tail -f log/development.log
+  - capistrano:
+  - server: ssh deployer@14.63.160.110
