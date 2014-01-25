@@ -14,7 +14,7 @@ windows:
         #- top
   - server: rails s
   - console: spring rails c
-  - database: rails db
+  - database: mongo
   - logs: tail -f log/development.log
   - capistrano:
   - server: ssh deployer@staging.zipbob.net

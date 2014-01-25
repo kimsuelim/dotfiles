@@ -87,25 +87,6 @@ set completeopt=menu,menuone,longest
 " Limit popup menu height
 "set pumheight=15
 
-" SuperTab option for context aware completion
-"let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-
-" Disable auto popup, use <Tab> to autocomplete
-let g:clang_complete_auto = 0
-" Show clang errors in the quickfix window
-let g:clang_complete_copen = 1
-
-" vim-ruby
-let g:ruby_operators = 1
-let g:ruby_space_errors = 1
-let g:ruby_fold = 0
-let g:ruby_no_expensive = 1
-let g:ruby_minlines = 500
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-
 " Improve autocomplete menu color
 highlight PMenu gui=bold guibg=#CECECE guifg=#444444
 highlight Pmenu ctermbg=238 gui=bold
@@ -167,11 +148,9 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 "--------------------------------------------
 
-
-filetype off                   " required!
-"call pathogen#runtime_append_all_bundles()
 set modelines=0
 
+filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -189,6 +168,8 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-vinegar'
+Bundle 'tpope/vim-markdown'
 "Bundle 'tpope/vim-cucumber'
 "Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-git'
@@ -197,9 +178,10 @@ compiler ruby         " Enable compiler support for ruby
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " Trigger by press var and vir
 Bundle 'kana/vim-textobj-user'
-Bundle 'nono/vim-handlebars'
+Bundle 'mustache/vim-mustache-handlebars'
 
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'morhetz/gruvbox'
 
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -208,8 +190,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'miripiruni/CSScomb-for-Vim'
 Bundle 'othree/html5.vim'
 Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-"Bundle 'pangloss/vim-javascript'
-Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+"Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kchmck/vim-coffee-script'
 "Bundle 'mattn/zencoding-vim'
 
@@ -263,6 +245,7 @@ filetype plugin indent on         " load file type plugins + indentation
 
 if has("gui_running")
   set background=dark
+  "set background=light
   set guifont=Monaco:h11
   "set guifont=ProFontX:h13
 
@@ -270,8 +253,9 @@ if has("gui_running")
   "colorscheme desert
   "colorscheme idleFingers
   "colorscheme solarized
+  colorscheme gruvbox
   "colorscheme Tomorrow
-  colorscheme Tomorrow-Night
+  "colorscheme Tomorrow-Night
   "colorscheme Tomorrow-Night-Eighties
   "colorscheme Tomorrow-Night-Bright
   "colorscheme Tomorrow-Night-Blue
@@ -280,12 +264,32 @@ else
   "colorscheme idleFingers
   "colorscheme desert
   "colorscheme solarized
+  colorscheme gruvbox
   "colorscheme Tomorrow
-  colorscheme Tomorrow-Night
+  "colorscheme Tomorrow-Night
   "colorscheme Tomorrow-Night-Eighties
   "colorscheme Tomorrow-Night-Bright
   "colorscheme Tomorrow-Night-Blue
 endif
+
+" SuperTab option for context aware completion
+"let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+" Disable auto popup, use <Tab> to autocomplete
+let g:clang_complete_auto = 0
+" Show clang errors in the quickfix window
+let g:clang_complete_copen = 1
+
+" vim-ruby
+let g:ruby_operators = 1
+let g:ruby_space_errors = 1
+let g:ruby_fold = 1
+let g:ruby_no_expensive = 0
+let g:ruby_minlines = 500
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
 
 "# ctrlp.vim
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
@@ -293,13 +297,10 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
 "# othree/html5.vim
 "Disable event-handler attributes support:
 let g:html5_event_handler_attributes_complete = 0
-
 "Disable RDFa attributes support:
 let g:html5_rdfa_attributes_complete = 0
-
 "Disable microdata attributes support:
 let g:html5_microdata_attributes_complete = 0
-
 "Disable WAI-ARIA attribute support:
 let g:html5_aria_attributes_complete = 0
 
@@ -319,9 +320,8 @@ let g:VimuxOrientation = "h"
 
 " turbux
 "let g:turbux_command_prefix = 'bundle exec'
-"let g:turbux_command_test_unit = 'spring testunit'
-let g:turbux_command_test_unit = 'rake test'
-"let g:turbux_command_test_unit = 'zeus testrb'
+let g:turbux_command_test_unit = 'spring testunit'
+"let g:turbux_command_test_unit = 'rake test'
 "let g:turbux_command_test_unit = 'bin/test'
 
 " Tidying whitespace
