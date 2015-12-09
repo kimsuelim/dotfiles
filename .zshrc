@@ -43,7 +43,7 @@ eval "$(rbenv init -)"
 export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
 export DISABLE_AUTO_TITLE=true
-export ANDROID_HOME=/Users/kimsuelim/Documents/dev/tools/android-sdk-macosx
+export ANDROID_HOME=/Users/kimsuelim/Library/Android/sdk
 
 # tmux
 alias tmux="TERM=screen-256color-bce tmux"
@@ -70,3 +70,6 @@ alias ec2='mosh --ssh="ssh -i ~/.ssh/id_rsa_ec2" ubuntu@ec2-54-248-21-116.ap-nor
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
+
+export NVM_DIR="/Users/kimsuelim/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

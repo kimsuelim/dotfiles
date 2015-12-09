@@ -3,3 +3,5 @@ html=.haml
 --type-add
 css=.sass,.scss
 
+--ignore-file=match:tags
+--ignore-file=match:.log

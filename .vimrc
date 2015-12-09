@@ -1,22 +1,8 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2002 Sep 19
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings.
-
 set nocompatible      " We're running Vim, not Vi!
 set statusline=%{fugitive#statusline()}\ %<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 syntax on
 
 set tags=./tags,./TAGS,tags,TAGS
-nmap <F8> :TagbarToggle<CR>
 
 "set fileencodings=ucs-bom,utf-8,korea,iso-2022-kr
 set fileencodings=utf-8,korea,iso-2022-kr
@@ -78,18 +64,14 @@ set colorcolumn=85
 " Set list
 set listchars=tab:▸\ ,eol:¬
 
-" Shortcut to rapidly toggle `set list`
-nnoremap <leader>l :set list!<CR>
-
 " Optimize autocomplete (snipmate, clan_complete, supertab)
 " Complete options (disable preview scratch window)
 set completeopt=menu,menuone,longest
 " Limit popup menu height
-"set pumheight=15
+set pumheight=15
 
-" Improve autocomplete menu color
-highlight PMenu gui=bold guibg=#CECECE guifg=#444444
-highlight Pmenu ctermbg=238 gui=bold
+" Shortcut to rapidly toggle `set list`
+nnoremap <leader>l :set list!<CR>
 
 " Disable arrow keys
 nnoremap <up> <nop>
@@ -124,7 +106,14 @@ let mapleader = ","
 nnoremap <leader><space> :noh<cr>
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-nnoremap <leader>A :Ack
+nnoremap <leader>a :Ag<space>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>c :CtrlP<CR>
+nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>] :TagbarToggle<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <leader>gd :Gdiff<CR>
 " I work with HTML often, so I have ,ft mapped to a “fold tag” function
 nnoremap <leader>ft Vatzf
 " I also work with Nick Sergeant and he likes his CSS properties sorted, so here’s a ,S mapping that sorts them for me
@@ -146,97 +135,110 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Substitute all occurrences of the word under the cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+" Finds and replaces in files based on the the current line.
+" map <Leader>fr ^l"ayt/^v$h"byu:vsp<CR>:args `ag -l <C-R>a`<CR>:argdo %s<C-R>bge \| update<CR>
+map <Leader>as :args `ag -l `<Left>
+map <Leader>ado :argdo %s///ge \| update
+
+" Same as above but asks before all the changes.
+map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `ag -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
 "--------------------------------------------
 
 set modelines=0
 
-filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'glmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-Bundle 'jgdavey/vim-turbux'
-Bundle 'benmills/vimux'
+Plugin 'jgdavey/vim-turbux'
+Plugin 'benmills/vimux'
 
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-vinegar'
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-bundler'
+"Bundle 'tpope/vim-dispatch'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-markdown'
 "Bundle 'tpope/vim-cucumber'
 "Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-git'
-Bundle 'vim-ruby/vim-ruby'
-compiler ruby         " Enable compiler support for ruby
-Bundle 'nelstrom/vim-textobj-rubyblock'
-" Trigger by press var and vir
-Bundle 'kana/vim-textobj-user'
-Bundle 'mustache/vim-mustache-handlebars'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-projectionist'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'kana/vim-textobj-user' " Trigger by press var and vir
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'morhetz/gruvbox'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
 
-Bundle 'miripiruni/CSScomb-for-Vim'
-Bundle 'othree/html5.vim'
-Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-Bundle 'pangloss/vim-javascript'
-"Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kchmck/vim-coffee-script'
-"Bundle 'mattn/zencoding-vim'
+Plugin 'miripiruni/CSScomb-for-Vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+"Plugin 'mattn/emmet-vim'
 
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
+Plugin 'greyblake/vim-preview'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'rking/ag.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'majutsushi/tagbar'
+" Plugin 'bling/vim-airline'
 
 " Pasting in Vim with indentation adjusted to destination context.
-Bundle 'sickill/vim-pasta'
+Plugin 'sickill/vim-pasta'
 
 " Automatic closing of quotes, parenthesis, brackets, etc.
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'ervandew/supertab'
-Bundle 'YankRing.vim'
-Bundle 'Tagbar'
-Bundle 'clang-complete'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'ervandew/supertab'
+Plugin 'YankRing.vim'
+Plugin 'clang-complete'
 
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "snipmate-snippets"
-Bundle "garbas/vim-snipmate"
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 " Erlang
-Bundle "jimenezrick/vimerl"
+Plugin 'jimenezrick/vimerl'
 
 " vim-scripts repos
 " Extend % function to ruby or python and etc...
-Bundle 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/matchit.zip'
 " redefines 6 search commands (/,?,n,N,*,#). At every
 " search command, it automatically prints
 " At match #N out of M matches".
 " press \\ => for Checking At which Match Number You Are
 
+call vundle#end()
 filetype plugin indent on         " load file type plugins + indentation
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Put your non-Plugin stuff after this line
 
 
 " *********************************************
@@ -273,15 +275,43 @@ else
 endif
 
 " SuperTab option for context aware completion
-"let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " Disable auto popup, use <Tab> to autocomplete
 let g:clang_complete_auto = 0
 " Show clang errors in the quickfix window
 let g:clang_complete_copen = 1
 
+let g:ctrlp_match_window = 'order:ttb,max:20'
+let g:NERDSpaceDelims=1
+let g:gitgutter_enabled = 0
+
+" extra rails.vim help
+let g:rails_gem_projections = {
+      \ "policies": {
+      \   "app/policies/*_policy.rb": {
+      \     "command": "policy",
+      \     "affinity": "model",
+      \     "alternate": "app/models/%s.rb"}},
+      \ "active_model_serializers": {
+      \   "app/serializers/*_serializer.rb": {
+      \     "command": "serializer",
+      \     "affinity": "model",
+      \     "alternate": "app/models/%s.rb"}},
+      \ "uploaders": {
+      \   "app/uploaders/*_uploader.rb": {
+      \     "command": "uploader",
+      \     "affinity": "model"}},
+      \ "factories": {
+      \   "test/factories/*.rb": {
+      \     "command": "factory",
+      \     "affinity": "model",
+      \     "alternate": "app/models/%s.rb",
+      \     "test": "test/models/%s_test.rb"}}}
+
 " vim-ruby
+compiler ruby         " Enable compiler support for ruby
 let g:ruby_operators = 1
 let g:ruby_space_errors = 1
 let g:ruby_fold = 1
@@ -292,7 +322,17 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 "# ctrlp.vim
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+" airline.vim
+let g:airline#extensions#tabline#enabled = 1
 
 "# othree/html5.vim
 "Disable event-handler attributes support:
@@ -303,7 +343,6 @@ let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
 "Disable WAI-ARIA attribute support:
 let g:html5_aria_attributes_complete = 0
-
 
 "# kien/rainbow_parentheses.vim
 let g:rbpt_max = 16
@@ -320,9 +359,15 @@ let g:VimuxOrientation = "h"
 
 " turbux
 "let g:turbux_command_prefix = 'bundle exec'
-let g:turbux_command_test_unit = 'spring testunit'
+"let g:turbux_command_test_unit = 'spring testunit'
 "let g:turbux_command_test_unit = 'rake test'
-"let g:turbux_command_test_unit = 'bin/test'
+let g:turbux_command_test_unit = 'bin/rake test'
+
+" syntastic
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_rubocop_exec = '/Users/kimsuelim/.rbenv/shims/rubocop'
+let g:syntastic_javascript_checkers=['jscs', 'jshint']
 
 " Tidying whitespace
 function! Preserve(command)

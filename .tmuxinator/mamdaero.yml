@@ -1,7 +1,7 @@
-# ~/.tmuxinator/zipbob.yml
+# ~/.tmuxinator/mamdaero.yml
 
-name: zipbob
-root: ~/Documents/dev/zipbob.net
+name: mamdaero
+root: ~/Documents/dev/mamdaero
 pre_window: rbenv shell 2.2.3
 
 windows:
@@ -10,10 +10,10 @@ windows:
       layout: even-horizontal
       panes:
         - bundle exec rails s
-        - cd frontend; ember build --watch --environment=development
+        - cd frontend; gulp watch
   - console: spring rails c
-  - db: mongo
+  - db: bundle exec rails db
   - logs: tail -f log/development.log
   - frontend: cd frontend
   - capistrano:
-  - server: ssh deployer@staging.zipbob.net
+  - server: #ssh deployer@staging.mamdaero.net

@@ -3,7 +3,7 @@
 
 name: codecast
 root: ~/Documents/dev/codecast
-pre_window: rbenv shell 2.0.0-p353
+pre_window: rbenv shell 2.1.1
 
 windows:
   - editor: vi
