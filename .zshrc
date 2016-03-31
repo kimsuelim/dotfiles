@@ -40,10 +40,10 @@ eval "$(rbenv init -)"
 #export RUBY_FREE_MIN=200000
 
 # Customize to your needs...
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 export EDITOR="mvim"
 export DISABLE_AUTO_TITLE=true
 export ANDROID_HOME=/Users/kimsuelim/Library/Android/sdk
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/nginx/sbin:/usr/local/share/npm/bin:$PATH
 
 # tmux
 alias tmux="TERM=screen-256color-bce tmux"
@@ -52,21 +52,22 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 
-# Use pry
-alias pryr="pry -r ./config/environment -r rails/console/app -r rails/console/helpers"
-
 # postgresql
 alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pg_stop="pg_ctl -D /usr/local/var/postgres stop"
 alias pg_restart="pg_ctl -D /usr/local/var/postgres restart"
 
-alias ucloud_ssh="ssh -i ~/.ssh/id_rsa deployer@zomoim.com"
-alias home_ssh="ssh -i ~/.ssh/id_rsa kimsuelim@surimjin.iptime.org"
-alias ec2_ssh="ssh -i ~/.ssh/id_rsa ubuntu@ec2-54-249-185-118.ap-northeast-1.compute.amazonaws.com"
+alias zipbob_web="ssh deployer@zipbob.net"
+alias zipbob_db="ssh deployer@staging.zipbob.net"
+alias zipbob_intra="ssh deployer@staging.zipbob.net"
+alias zipbob_staging="ssh deployer@staging.zipbob.net"
 
-alias ucloud="mosh deployer@zomoim.com -- tmux attach"
-alias home="mosh kimsuelim@surimjin.iptime.org -- tmux attach"
-alias ec2='mosh --ssh="ssh -i ~/.ssh/id_rsa_ec2" ubuntu@ec2-54-248-21-116.ap-northeast-1.compute.amazonaws.com -- tmux attach'
+alias sopo_web="ssh ubuntu@sopo.zipbob.net"
+
+alias sa2da_web="ssh deploy@sa2da.net"
+alias sa2da_elasticsearch="ssh ubuntu@ec2-54-64-117-132.ap-northeast-1.compute.amazonaws.com"
+
+alias quizdang="ssh deploy@quizdang.com"
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8

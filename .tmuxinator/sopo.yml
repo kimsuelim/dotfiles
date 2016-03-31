@@ -1,0 +1,19 @@
+# ~/.tmuxinator/sopo.yml
+
+name: sopo
+root: ~/Documents/dev/sopo
+pre_window: rbenv shell 2.3.0
+
+windows:
+  - editor: vi
+  - server: 
+      layout: even-horizontal
+      panes:
+        - bundle exec rails s -b 0.0.0.0
+        - cd frontend; gulp watch
+  - console: bundle exec rails c
+  - db: bundle exec rails db
+  - logs: tail -f log/development.log
+  - frontend: cd frontend
+  - capistrano: mvim
+  - server: #ssh deployer@sopo.zipbob.net

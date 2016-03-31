@@ -70,6 +70,7 @@ set completeopt=menu,menuone,longest
 " Limit popup menu height
 set pumheight=15
 
+
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
 
@@ -114,6 +115,7 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gs :Gstatus<CR>
 " I work with HTML often, so I have ,ft mapped to a “fold tag” function
 nnoremap <leader>ft Vatzf
 " I also work with Nick Sergeant and he likes his CSS properties sorted, so here’s a ,S mapping that sorts them for me
@@ -151,11 +153,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'jgdavey/vim-turbux'
-Plugin 'benmills/vimux'
+Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle
 
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
@@ -167,29 +165,28 @@ Plugin 'tpope/vim-bundler'
 "Bundle 'tpope/vim-dispatch'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-markdown'
-"Bundle 'tpope/vim-cucumber'
 "Bundle 'tpope/vim-haml'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-projectionist'
+Plugin 'jgdavey/vim-turbux'
+Plugin 'benmills/vimux'
+
+" language
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-user' " Trigger by press var and vir
-
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-
 Plugin 'miripiruni/CSScomb-for-Vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'othree/html5.vim'
-Plugin 'hail2u/vim-css3-syntax'
+" Plugin 'hail2u/vim-css3-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
-"Plugin 'mattn/emmet-vim'
+Plugin 'clang-complete'
+Plugin 'jimenezrick/vimerl' " Erlang
 
+" tools
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'greyblake/vim-preview'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -197,26 +194,25 @@ Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'rking/ag.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
-" Plugin 'bling/vim-airline'
-
-" Pasting in Vim with indentation adjusted to destination context.
-Plugin 'sickill/vim-pasta'
-
-" Automatic closing of quotes, parenthesis, brackets, etc.
-Plugin 'Raimondi/delimitMate'
-
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'sickill/vim-pasta' " Pasting in Vim with indentation adjusted to destination context.
+Plugin 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
 Plugin 'ervandew/supertab'
 Plugin 'YankRing.vim'
-Plugin 'clang-complete'
-
 Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+" Plugin 'bling/vim-airline'
 
-" Erlang
-Plugin 'jimenezrick/vimerl'
+" color theme
+Plugin 'morhetz/gruvbox'
+Plugin 'tomasr/molokai'
+Plugin 'sickill/vim-monokai'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'endel/vim-github-colorscheme'
+Plugin '29decibel/codeschool-vim-theme'
+Plugin 'w0ng/vim-hybrid'
 
 " vim-scripts repos
 " Extend % function to ruby or python and etc...
@@ -245,38 +241,9 @@ filetype plugin indent on         " load file type plugins + indentation
 " *           Plugin Customization            *
 " *********************************************
 
-if has("gui_running")
-  set background=dark
-  "set background=light
-  set guifont=Monaco:h11
-  "set guifont=ProFontX:h13
-
-  set guioptions=-t
-  "colorscheme desert
-  "colorscheme idleFingers
-  "colorscheme solarized
-  colorscheme gruvbox
-  "colorscheme Tomorrow
-  "colorscheme Tomorrow-Night
-  "colorscheme Tomorrow-Night-Eighties
-  "colorscheme Tomorrow-Night-Bright
-  "colorscheme Tomorrow-Night-Blue
-else
-  set background=dark
-  "colorscheme idleFingers
-  "colorscheme desert
-  "colorscheme solarized
-  colorscheme gruvbox
-  "colorscheme Tomorrow
-  "colorscheme Tomorrow-Night
-  "colorscheme Tomorrow-Night-Eighties
-  "colorscheme Tomorrow-Night-Bright
-  "colorscheme Tomorrow-Night-Blue
-endif
-
 " SuperTab option for context aware completion
-let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " Disable auto popup, use <Tab> to autocomplete
 let g:clang_complete_auto = 0
@@ -344,30 +311,19 @@ let g:html5_microdata_attributes_complete = 0
 "Disable WAI-ARIA attribute support:
 let g:html5_aria_attributes_complete = 0
 
-"# kien/rainbow_parentheses.vim
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-"au Syntax * RainbowParenthesesLoadChevrons
-
 " vimux
 let g:VimuxHeight = "30"
 let g:VimuxOrientation = "h"
 
 " turbux
-"let g:turbux_command_prefix = 'bundle exec'
-"let g:turbux_command_test_unit = 'spring testunit'
-"let g:turbux_command_test_unit = 'rake test'
-let g:turbux_command_test_unit = 'bin/rake test'
+let g:turbux_command_test_unit = 'rake test'
 
 " syntastic
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_ruby_rubocop_exec = '/Users/kimsuelim/.rbenv/shims/rubocop'
 let g:syntastic_javascript_checkers=['jscs', 'jshint']
+
 
 " Tidying whitespace
 function! Preserve(command)
@@ -383,6 +339,33 @@ function! Preserve(command)
 endfunction
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
+
+if has("gui_running")
+  set background=dark
+  "set background=light
+  set guifont=Monaco:h11
+  "set guifont=ProFontX:h13
+
+  set guioptions=-t
+  " colorscheme desert
+  " colorscheme gruvbox
+  " colorscheme molokai
+  " colorscheme monokai
+  " colorscheme jellybeans
+  " colorscheme github
+  " colorscheme codeschool
+  colorscheme hybrid
+else
+  set background=dark
+  " colorscheme desert
+  " colorscheme gruvbox
+  " colorscheme molokai
+  " colorscheme monokai
+  " colorscheme jellybeans
+  " colorscheme github
+  " colorscheme codeschool
+  colorscheme hybrid
+endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -405,8 +388,6 @@ if has("autocmd")
  " Syntax of these languages is fussy over tabs Vs spaces
   autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-  " Customisations based on house-style (arbitrary)
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
@@ -417,10 +398,6 @@ if has("autocmd")
   " run this command automatically when a file is saved
   autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
 
-  au BufRead,BufNewFile *.rabl setf ruby
-  au BufRead,BufNewFile *.rabl syn keyword rubyRabl node attribute object child collection attributes glue extends
-  au BufRead,BufNewFile *.rabl hi def link rubyRabl Function
-
   " Better CSS Syntax for Vim
-  au BufRead,BufNewFile *.sass set filetype=css
+  " au BufRead,BufNewFile *.sass set filetype=css
 endif
