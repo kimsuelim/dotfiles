@@ -57,9 +57,9 @@ set gdefault
 "set wrap
 set nowrap                        " Don't wrap lines
 set linebreak
-set textwidth=80
+set textwidth=90
 set formatoptions=qrn1
-set colorcolumn=85
+set colorcolumn=95
 
 " Set list
 set listchars=tab:▸\ ,eol:¬
@@ -316,7 +316,7 @@ let g:VimuxHeight = "30"
 let g:VimuxOrientation = "h"
 
 " turbux
-let g:turbux_command_test_unit = 'rake test'
+let g:turbux_command_test_unit = 'rails test'
 
 " syntastic
 let g:syntastic_aggregate_errors = 1
@@ -343,7 +343,8 @@ nmap _= :call Preserve("normal gg=G")<CR>
 if has("gui_running")
   set background=dark
   "set background=light
-  set guifont=Monaco:h11
+  set guifont=Hermit:h13
+  " set guifont=Monaco:h11
   "set guifont=ProFontX:h13
 
   set guioptions=-t

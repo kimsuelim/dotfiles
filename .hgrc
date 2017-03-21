@@ -1,9 +1,0 @@
-[ui]
-username = Surim Kim <kimsuelim@gmail.com>
-
-[extdiff]
-cmd.kdiff3 = 
-
-[merge-tools]
-kdiff3.args = $base $local $other -o $output
-

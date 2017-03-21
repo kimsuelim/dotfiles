@@ -2,7 +2,7 @@
 
 name: sa2da
 root: ~/Documents/dev/sa2da
-pre_window: rbenv shell 2.3.0
+pre_window: rbenv shell 2.3.1
 
 windows:
   - editor: vi

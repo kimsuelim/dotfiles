@@ -1,0 +1,15 @@
+*~
+.DS_Store
+*.swp
+*.swo
+doc/tags
+doc/tags-ja
+.netrwhist
+/.bundle
+.vim/bundle
+/vendor/bundle
+
+.ssh/id_rsa
+.ssh/*.pem
+.ssh/*.pub
+.ssh/known_hosts

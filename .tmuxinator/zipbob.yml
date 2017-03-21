@@ -11,9 +11,9 @@ windows:
       panes:
         - bundle exec rails s
         - cd frontend; ember build --watch --environment=development
-  - console: spring rails c
+  - console: bundle exec rails c
   - db: mongo
   - logs: tail -f log/development.log
   - frontend: cd frontend
-  - capistrano:
-  - server: ssh deployer@staging.zipbob.net
+  - capistrano: mvim
+  - server: #ssh deployer@staging.zipbob.net

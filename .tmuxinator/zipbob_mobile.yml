@@ -1,8 +1,6 @@
-# ~/.tmuxinator/sopo.yml
-
-name: sopo
-root: ~/Documents/dev/sopo
-pre_window: rbenv shell 2.3.0
+name: zipbob_mobile
+root: ~/Documents/dev/zipbob.mobile
+pre_window: rbenv shell 2.3.3
 
 windows:
   - editor: vi
@@ -16,4 +14,4 @@ windows:
   - logs: tail -f log/development.log
   - frontend: cd frontend
   - capistrano: mvim
-  - server: #ssh deployer@sopo.zipbob.net
+  - server: #ssh deploy@m.zipbob.net
