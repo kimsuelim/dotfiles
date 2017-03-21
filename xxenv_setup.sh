@@ -19,3 +19,14 @@ if [ ! -d ~/.rbenv ]; then
   rbenv global  2.4.0
   rbenv rehash
 fi
+
+if [ ! -d ~/.nvm ]; then
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+  # ruby required libssl-dev libreadline6-dev libncurses5-dev libsqlite3-dev
+  nvm install --lts
+  nvm use --lts
+fi

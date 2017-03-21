@@ -37,8 +37,8 @@ fi
 export ANDROID_HOME="/Users/kimsuelim/Library/Android/sdk"
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 
-export NVM_DIR="/Users/kimsuelim/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 export EDITOR="mvim"
 export DISABLE_AUTO_TITLE=true
