@@ -15,7 +15,7 @@ if [ ! -d ~/.rbenv ]; then
   eval "$(rbenv init -)"
 
   # ruby required libssl-dev libreadline6-dev libncurses5-dev libsqlite3-dev
-  rbenv install 2.3.3
-  rbenv global  2.3.3
+  rbenv install 2.4.0
+  rbenv global  2.4.0
   rbenv rehash
 fi
