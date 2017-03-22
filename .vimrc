@@ -321,9 +321,7 @@ let g:turbux_command_test_unit = 'rails test'
 " syntastic
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_ruby_rubocop_exec = '/Users/kimsuelim/.rbenv/shims/rubocop'
-let g:syntastic_javascript_checkers=['jscs', 'jshint']
-
+let g:syntastic_javascript_checkers=['eslint']
 
 " Tidying whitespace
 function! Preserve(command)

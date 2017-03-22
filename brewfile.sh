@@ -41,6 +41,7 @@ brew install screen
 brew install tmux
 brew install reattach-to-user-namespace
 
+brew install ctags
 brew install ag
 brew install aspell
 brew install autoconf

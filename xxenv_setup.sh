@@ -31,4 +31,7 @@ if [ ! -d ~/.nvm ]; then
 
   npm install -g cordova
   npm install -g gulp
+  npm install -g bower
+  npm install -g eslint
+  npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
 fi
