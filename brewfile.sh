@@ -38,6 +38,8 @@ brew install hub
 brew install tig
 brew install zsh
 brew install screen
+brew install tmux
+brew install reattach-to-user-namespace
 
 brew install ag
 brew install aspell
@@ -68,7 +70,7 @@ brew install pstree
 brew install readline
 brew install sqlite
 brew install ssh-copy-id
-brew install tmux
+
 brew install tree
 brew install watch
 brew install wget

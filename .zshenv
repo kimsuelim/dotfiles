@@ -7,6 +7,8 @@ function export_path_if_exists { [[ -d "$1" ]] && export PATH="$1:$PATH" }
 export GOPATH=$HOME
 export_path_if_exists "$GOPATH/bin"
 export_path_if_exists "$HOME/.rbenv/bin" && eval "$(rbenv init --no-rehash - zsh)"
+export_path_if_exists /usr/local/share/git-core/contrib/workdir
+export_path_if_exists /usr/local/share/git-core/contrib/diff-highlight
 export_path_if_exists /usr/local/share/npm/bin && {
   export NODE_PATH="/usr/local/share/npm/lib/node_modules"
 }

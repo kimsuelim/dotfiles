@@ -343,7 +343,7 @@ nmap _= :call Preserve("normal gg=G")<CR>
 if has("gui_running")
   set background=dark
   "set background=light
-  set guifont=Hermit:h13
+  set guifont=Hermit\ Medium:h14
   " set guifont=Monaco:h11
   "set guifont=ProFontX:h13
 

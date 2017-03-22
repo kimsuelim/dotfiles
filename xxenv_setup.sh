@@ -26,7 +26,9 @@ if [ ! -d ~/.nvm ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-  # ruby required libssl-dev libreadline6-dev libncurses5-dev libsqlite3-dev
   nvm install --lts
   nvm use --lts
+
+  npm install -g cordova
+  npm install -g gulp
 fi
