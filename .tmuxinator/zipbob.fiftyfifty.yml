@@ -1,7 +1,7 @@
 # ~/.tmuxinator/zipbob.dataing.yml
 
 name: fiftyfifty
-root: ~/Documents/dev/zipbob.fiftyfifty
+root: ~/dev/zipbob.fiftyfifty
 pre_window: rbenv shell 2.2.2
 
 windows:

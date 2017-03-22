@@ -1,6 +1,6 @@
-name: zipbob_mobile
-root: ~/Documents/dev/zipbob.mobile
-pre_window: rbenv shell 2.3.3
+name: ssaida
+root: ~/dev/ssaida
+pre_window: rbenv shell 2.4.0
 
 windows:
   - editor: vi
@@ -14,4 +14,4 @@ windows:
   - logs: tail -f log/development.log
   - frontend: cd frontend
   - capistrano: mvim
-  - server: #ssh deploy@m.zipbob.net
+  - server: #ssh deploy@www.ssaida.com

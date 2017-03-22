@@ -1,7 +1,7 @@
 # ~/.tmuxinator/quizdang.yml
 
 name: quizdang
-root: ~/Documents/dev/quizdang
+root: ~/dev/quizdang
 pre_window: rbenv shell 2.3.0
 
 windows:

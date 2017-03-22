@@ -2,7 +2,7 @@
 # you can make as many tabs as you wish...
 
 name: codecast
-root: ~/Documents/dev/codecast
+root: ~/dev/codecast
 pre_window: rbenv shell 2.1.1
 
 windows:

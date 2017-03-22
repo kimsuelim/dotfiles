@@ -1,19 +1,17 @@
-# ~/.tmuxinator/zipbob.yml
-
-name: zipbob
-root: ~/Documents/dev/zipbob.net
-pre_window: rbenv shell 2.2.3
+name: zipbob_mobile
+root: ~/dev/zipbob.mobile
+pre_window: rbenv shell 2.3.3
 
 windows:
   - editor: vi
   - server: 
       layout: even-horizontal
       panes:
-        - bundle exec rails s
-        - cd frontend; ember build --watch --environment=development
+        - bundle exec rails s -b 0.0.0.0
+        - cd frontend; gulp watch
   - console: bundle exec rails c
-  - db: mongo
+  - db: bundle exec rails db
   - logs: tail -f log/development.log
   - frontend: cd frontend
   - capistrano: mvim
-  - server: #ssh deployer@staging.zipbob.net
+  - server: #ssh deploy@m.zipbob.net

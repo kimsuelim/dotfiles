@@ -1,7 +1,7 @@
 # ~/.tmuxinator/sa2da.yml
 
 name: sa2da
-root: ~/Documents/dev/sa2da
+root: ~/dev/sa2da
 pre_window: rbenv shell 2.3.1
 
 windows:
