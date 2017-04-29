@@ -31,14 +31,18 @@ set ruler		                      " Show the cursor position all the time
 set scrolloff=3
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
-set wildignore=*.o,*.obj,*~       " Stuff to ignore when tab completing
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*~     " Stuff to ignore when tab completing (MacOSX/Linux)
 set visualbell
 set noerrorbells
 set laststatus=2                  " Show the status line all the time
+
+" performance
 set ttyfast
 set lazyredraw
-"set cursorline
-"set relativenumber
+set cursorline
+" set relativenumber
+set synmaxcol=200
+set foldmethod=indent
 
 set undofile
 set nobackup                      " Don't make a backup before overwriting a file.
@@ -63,13 +67,6 @@ set colorcolumn=95
 
 " Set list
 set listchars=tab:▸\ ,eol:¬
-
-" Optimize autocomplete (snipmate, clan_complete, supertab)
-" Complete options (disable preview scratch window)
-set completeopt=menu,menuone,longest
-" Limit popup menu height
-set pumheight=15
-
 
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
@@ -147,8 +144,6 @@ map <Leader>ado :argdo %s///ge \| update
 map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `ag -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
 "--------------------------------------------
 
-set modelines=0
-
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -162,12 +157,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-bundler'
-"Bundle 'tpope/vim-dispatch'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-markdown'
-"Bundle 'tpope/vim-haml'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-projectionist'
+
+" tmux
 Plugin 'jgdavey/vim-turbux'
 Plugin 'benmills/vimux'
 
@@ -175,19 +168,16 @@ Plugin 'benmills/vimux'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-user' " Trigger by press var and vir
-Plugin 'miripiruni/CSScomb-for-Vim'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'othree/html5.vim'
-" Plugin 'hail2u/vim-css3-syntax'
+Plugin 'hail2u/vim-css3-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'clang-complete'
 Plugin 'jimenezrick/vimerl' " Erlang
 
 " tools
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'greyblake/vim-preview'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'godlygeek/tabular'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
@@ -203,7 +193,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-" Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/matchit.zip'
 
 " color theme
 Plugin 'morhetz/gruvbox'
@@ -214,28 +204,8 @@ Plugin 'endel/vim-github-colorscheme'
 Plugin '29decibel/codeschool-vim-theme'
 Plugin 'w0ng/vim-hybrid'
 
-" vim-scripts repos
-" Extend % function to ruby or python and etc...
-Plugin 'vim-scripts/matchit.zip'
-" redefines 6 search commands (/,?,n,N,*,#). At every
-" search command, it automatically prints
-" At match #N out of M matches".
-" press \\ => for Checking At which Match Number You Are
-
 call vundle#end()
 filetype plugin indent on         " load file type plugins + indentation
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 
 " *********************************************
 " *           Plugin Customization            *
@@ -250,66 +220,56 @@ let g:clang_complete_auto = 0
 " Show clang errors in the quickfix window
 let g:clang_complete_copen = 1
 
-let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
 let g:gitgutter_enabled = 0
 
 " extra rails.vim help
-let g:rails_gem_projections = {
-      \ "policies": {
-      \   "app/policies/*_policy.rb": {
-      \     "command": "policy",
-      \     "affinity": "model",
-      \     "alternate": "app/models/%s.rb"}},
-      \ "active_model_serializers": {
-      \   "app/serializers/*_serializer.rb": {
-      \     "command": "serializer",
-      \     "affinity": "model",
-      \     "alternate": "app/models/%s.rb"}},
-      \ "uploaders": {
-      \   "app/uploaders/*_uploader.rb": {
-      \     "command": "uploader",
-      \     "affinity": "model"}},
-      \ "factories": {
-      \   "test/factories/*.rb": {
-      \     "command": "factory",
-      \     "affinity": "model",
-      \     "alternate": "app/models/%s.rb",
-      \     "test": "test/models/%s_test.rb"}}}
+let g:rails_projections = {
+      \ "app/uploaders/*_uploader.rb": {
+      \   "command": "uploader",
+      \   "template":
+      \     ["class {camelcase|capitalize|colons}Uploader < "
+      \      . "CarrierWave::Uploader::Base", "end"],
+      \   "test": [
+      \     "test/unit/{}_uploader_test.rb",
+      \     "spec/models/{}_uploader_spec.rb"
+      \   ],
+      \   "keywords": "process version"
+      \ },
+      \ "app/policies/*_policy.rb": {
+      \   "command": "policy",
+      \   "template":
+      \     ["class {camelcase|capitalize|colons}Policy < "
+      \      . "CarrierWave::Uploader::Base", "end"],
+      \   "test": [
+      \     "test/unit/{}_policy_test.rb",
+      \     "spec/models/{}_policy_spec.rb"
+      \   ],
+      \   "keywords": "process version"
+      \ },
+      \ "features/support/*.rb": {"command": "support"},
+      \ "features/support/env.rb": {"command": "support"}}
 
 " vim-ruby
-compiler ruby         " Enable compiler support for ruby
-let g:ruby_operators = 1
-let g:ruby_space_errors = 1
-let g:ruby_fold = 1
-let g:ruby_no_expensive = 0
-let g:ruby_minlines = 500
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
+" compiler ruby         " Enable compiler support for ruby
+" let g:ruby_operators = 1
+" let g:ruby_space_errors = 1
+" let g:ruby_fold = 1
+" let g:ruby_no_expensive = 0
+" let g:ruby_minlines = 500
+" let g:rubycomplete_buffer_loading = 1
+" let g:rubycomplete_classes_in_global = 1
+" let g:rubycomplete_rails = 1
 
 "# ctrlp.vim
+let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
       \ --ignore .hg
       \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
       \ -g ""'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-
-" airline.vim
-let g:airline#extensions#tabline#enabled = 1
-
-"# othree/html5.vim
-"Disable event-handler attributes support:
-let g:html5_event_handler_attributes_complete = 0
-"Disable RDFa attributes support:
-let g:html5_rdfa_attributes_complete = 0
-"Disable microdata attributes support:
-let g:html5_microdata_attributes_complete = 0
-"Disable WAI-ARIA attribute support:
-let g:html5_aria_attributes_complete = 0
 
 " vimux
 let g:VimuxHeight = "30"
@@ -319,6 +279,7 @@ let g:VimuxOrientation = "h"
 let g:turbux_command_test_unit = 'rails test'
 
 " syntastic
+let g:syntastic_enable_balloons = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_javascript_checkers=['eslint']
@@ -357,13 +318,13 @@ if has("gui_running")
 else
   set background=dark
   " colorscheme desert
-  " colorscheme gruvbox
+  colorscheme gruvbox
   " colorscheme molokai
   " colorscheme monokai
   " colorscheme jellybeans
   " colorscheme github
   " colorscheme codeschool
-  colorscheme hybrid
+  " colorscheme hybrid
 endif
 
 " In many terminal emulators the mouse works just fine, thus enable it.
@@ -395,8 +356,8 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 
   " run this command automatically when a file is saved
-  autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
+  " autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
 
   " Better CSS Syntax for Vim
-  " au BufRead,BufNewFile *.sass set filetype=css
+  au BufRead,BufNewFile *.inky set filetype=eruby
 endif

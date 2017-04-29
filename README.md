@@ -14,24 +14,17 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 
 brew doctor
 
-git clone https://github.com/kamipo/dotfiles.git
+git clone https://github.com/kimsuelim/dotfiles.git
 cd dotfiles
 
 ./brewfile.sh
 ./dotsetup.sh
 ./xxenv_setup.sh
 
+# zsh
 sudo vi /etc/shells
 chpass -s /usr/local/bin/zsh
-
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-### ghq
-
-```
-go get github.com/motemen/ghq
-ghq get kamipo/mysql-build
 ```
 
 ### rbenv
@@ -50,8 +43,8 @@ eval "$(rbenv init -)"
 
 # ruby required libssl-dev libreadline6-dev libncurses5-dev libsqlite3-dev
 # nokogiri required libxml2-dev libxslt1-dev
-rbenv install 2.2.1
-rbenv global  2.2.1
+rbenv install 2.4.0
+rbenv global  2.4.0
 rbenv rehash
 ```
 
