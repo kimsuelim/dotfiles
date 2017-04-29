@@ -6,6 +6,7 @@
 	status = auto
 	branch = auto
 	interactive = auto
+  ui = true
 [pager]
 	log = diff-highlight | less
 	show = diff-highlight | less
@@ -15,6 +16,7 @@
   precomposeunicode = true
   excludesfile = ~/.gitignore
   editor = vim -f
+  fscache = true
 [push]
   default = simple
 [diff]

@@ -21,7 +21,6 @@ brew cask install google-drive
 brew cask install firefox
 brew cask install google-chrome
 brew cask install java
-brew cask install limechat
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install macvim
@@ -31,15 +30,20 @@ brew cask install android-studio
 brew cask install application-loader
 brew cask install macdown
 brew cask install imageoptim
+brew cask install mplayerx
+brew cask install vlc
 
 # Packages
 brew install git
+brew install yarn
 brew install hub
 brew install tig
 brew install zsh
 brew install screen
 brew install tmux
 brew install reattach-to-user-namespace
+
+brew install imagemagick
 
 brew install ctags
 brew install ag
@@ -79,6 +83,8 @@ brew install wget
 brew install mysql
 brew install postgresql
 brew install redis
+brew install mongodb
+brew install elasticsearch@2.4
 
 brew install ngrep
 brew install tcpflow

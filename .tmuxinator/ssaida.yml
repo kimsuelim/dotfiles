@@ -7,7 +7,7 @@ windows:
   - server: 
       layout: even-horizontal
       panes:
-        - bundle exec rails s -b 0.0.0.0
+        - bundle exec rails s
         - cd frontend; gulp watch
   - console: bundle exec rails c
   - db: bundle exec rails db
