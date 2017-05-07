@@ -68,9 +68,6 @@ set colorcolumn=95
 " Set list
 set listchars=tab:▸\ ,eol:¬
 
-" Shortcut to rapidly toggle `set list`
-nnoremap <leader>l :set list!<CR>
-
 " Disable arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -89,17 +86,6 @@ vnoremap <F1> <ESC>
 au FocusLost * :wa
 inoremap jj <ESC>
 
-" Split windows
-nnoremap <leader>W <C-w><C-v><C-l>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" YankRing
-nnoremap <silent> <F3> :YRShow<cr>
-inoremap <silent> <F3> <ESC>:YRShow<cr>
-
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
 " Strip all trailing whitespace in the current file
@@ -115,6 +101,8 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gs :Gstatus<CR>
 " I work with HTML often, so I have ,ft mapped to a “fold tag” function
 nnoremap <leader>ft Vatzf
+nnoremap <leader>it vat
+nnoremap <leader>at vit
 " I also work with Nick Sergeant and he likes his CSS properties sorted, so here’s a ,S mapping that sorts them for me
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " This next mapping imitates TextMates Ctrl+Q function to re-hardwrap paragraphs of text
@@ -127,6 +115,21 @@ nnoremap <tab> %
 vnoremap <tab> %
 nnoremap / /\v
 vnoremap / /\v
+
+" Shortcut to rapidly toggle `set list`
+nnoremap <leader>l :set list!<CR>
+
+" Split windows
+nnoremap <leader>W <C-w><C-v><C-l>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" YankRing
+nnoremap <silent> <F3> :YRShow<cr>
+inoremap <silent> <F3> <ESC>:YRShow<cr>
+nnoremap <leader>y :YRShow<CR>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -173,6 +176,7 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jimenezrick/vimerl' " Erlang
+Plugin 'rhysd/vim-crystal'
 
 " tools
 Plugin 'scrooloose/nerdtree'
@@ -358,6 +362,7 @@ if has("autocmd")
   " run this command automatically when a file is saved
   " autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
 
-  " Better CSS Syntax for Vim
-  au BufRead,BufNewFile *.inky set filetype=eruby
+  " inky & ecr
+  autocmd BufRead,BufNewFile *.inky set filetype=html.eruby
+  autocmd BufRead,BufNewFile *.ecr set filetype=html.eruby
 endif

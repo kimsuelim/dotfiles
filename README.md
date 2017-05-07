@@ -27,6 +27,12 @@ chpass -s /usr/local/bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
+### Crystal
+
+```
+curl -fsSLo- https://raw.githubusercontent.com/samueleaton/sentry/master/install.rb | ruby
+```
+
 ### rbenv
 
 ```

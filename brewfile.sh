@@ -45,6 +45,7 @@ brew install reattach-to-user-namespace
 
 brew install imagemagick
 
+brew install crystal-lang
 brew install ctags
 brew install ag
 brew install aspell
