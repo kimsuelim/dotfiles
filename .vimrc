@@ -3,10 +3,6 @@ set statusline=%{fugitive#statusline()}\ %<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"
 syntax on
 
 set tags=./tags,./TAGS,tags,TAGS
-
-"set fileencodings=ucs-bom,utf-8,korea,iso-2022-kr
-set fileencodings=utf-8,korea,iso-2022-kr
-set termencoding=utf-8,korea,iso-2022-kr
 set encoding=utf-8
 set fileformats=unix,dos,mac
 
@@ -15,7 +11,6 @@ set tabstop=2                     " Like emacs tab-width variable
 set shiftwidth=2                  " Like emacs c-basic-offset variable
 set expandtab                     " Use spaces, not tabs (optional)
 set backspace=indent,eol,start    " Backspace through everything in insert mode"
-"set smarttab
 set autoindent                    " Match indentation of previous line
 set smartindent
 set et
@@ -31,7 +26,7 @@ set ruler		                      " Show the cursor position all the time
 set scrolloff=3
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*~     " Stuff to ignore when tab completing (MacOSX/Linux)
+set wildignore+=*/node_modules/*,*/tmp/**,*.so,*.swp,*.zip,*~     " Stuff to ignore when tab completing (MacOSX/Linux)
 set visualbell
 set noerrorbells
 set laststatus=2                  " Show the status line all the time
@@ -42,7 +37,8 @@ set lazyredraw
 set cursorline
 " set relativenumber
 set synmaxcol=200
-set foldmethod=indent
+set foldmethod=manual
+" set foldmethod=indent
 
 set undofile
 set nobackup                      " Don't make a backup before overwriting a file.
@@ -283,10 +279,13 @@ let g:VimuxOrientation = "h"
 let g:turbux_command_test_unit = 'rails test'
 
 " syntastic
+let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_balloons = 0
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_javascript_checkers=['eslint']
+nnoremap <leader>e :SyntasticCheck<CR>
 
 " Tidying whitespace
 function! Preserve(command)
