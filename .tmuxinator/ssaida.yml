@@ -7,10 +7,10 @@ windows:
   - server: 
       layout: even-horizontal
       panes:
-        - bundle exec rails s
+        - bin/rails s
         - cd frontend; gulp watch
-  - console: bundle exec rails c
-  - db: bundle exec rails db
+  - console: bin/rails c
+  - db: bin/rails db
   - logs: tail -f log/development.log
   - frontend: cd frontend
   - capistrano: mvim
