@@ -175,6 +175,7 @@ Plugin 'jimenezrick/vimerl' " Erlang
 Plugin 'rhysd/vim-crystal'
 
 " tools
+Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'godlygeek/tabular'
@@ -210,6 +211,9 @@ filetype plugin indent on         " load file type plugins + indentation
 " *********************************************
 " *           Plugin Customization            *
 " *********************************************
+
+" vim-markdown-preview
+let vim_markdown_preview_github = 1
 
 " SuperTab option for context aware completion
 let g:SuperTabDefaultCompletionType = "<c-n>"

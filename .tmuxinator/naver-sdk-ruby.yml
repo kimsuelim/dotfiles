@@ -1,0 +1,8 @@
+name: naver-sdk-ruby
+root: ~/dev/naver-sdk
+pre_window: rbenv shell 2.4.0
+
+windows:
+  - server: grip --norefresh
+  - console: bin/console
+  - test: 

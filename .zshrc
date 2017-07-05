@@ -63,13 +63,14 @@ export NVM_DIR="$HOME/.nvm"
 
 alias zipbob_web="ssh deploy@www.zipbob.net"
 alias zipbob_db="ssh deployer@14.63.184.31"
-alias zipbob_mobile="ssh deploy@m.zipbob.net"
 # alias zipbob_intra="ssh ubuntu@intra.zipbob.net"
 alias zipbob_intra="ssh ubuntu@13.124.63.85"
+
+alias ssaida_app="ssh deploy@www.ssaida.com"
 
 alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias tmux="TERM=screen-256color-bce tmux"
 alias crit="cordova run ios --target='iPhone-6s, 9.3'"
-alias ctags_rails="ctags -R --exclude=.git --exclude=log --exclude=coverage --exclude=node_modules --exclude=frontend/dist --exclude=frontend/node_modules --exclude=frontend/platforms --exclude=frontend/plugins --exclude=frontend/bower_components *"
+alias ctags_rails="ctags -R --exclude=.git --exclude=log --exclude=coverage --exclude=node_modules --exclude=frontend/dist --exclude=frontend/node_modules --exclude=frontend/platforms --exclude=frontend/plugins --exclude=frontend/bower_components --exclude=frontend/src/vendor *"
 alias generate_random_password="openssl rand -base64 16"
