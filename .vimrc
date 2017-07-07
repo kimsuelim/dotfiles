@@ -204,6 +204,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'endel/vim-github-colorscheme'
 Plugin '29decibel/codeschool-vim-theme'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'dracula/vim'
 
 call vundle#end()
 filetype plugin indent on         " load file type plugins + indentation
@@ -307,32 +308,19 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
 
 if has("gui_running")
-  set background=dark
-  "set background=light
-  set guifont=Hermit\ Medium:h14
-  " set guifont=Monaco:h11
-  "set guifont=ProFontX:h13
-
   set guioptions=-t
-  " colorscheme desert
-  " colorscheme gruvbox
-  " colorscheme molokai
-  " colorscheme monokai
-  " colorscheme jellybeans
-  " colorscheme github
-  " colorscheme codeschool
-  colorscheme hybrid
-else
-  set background=dark
-  " colorscheme desert
-  colorscheme gruvbox
-  " colorscheme molokai
-  " colorscheme monokai
-  " colorscheme jellybeans
-  " colorscheme github
-  " colorscheme codeschool
-  " colorscheme hybrid
+  set guifont=Hermit\ medium:h14
+  " set guifont=ProFontX:h13
 endif
+
+" colorscheme gruvbox
+" colorscheme molokai
+" colorscheme monokai
+" colorscheme jellybeans
+" colorscheme github
+" colorscheme codeschool
+" colorscheme hybrid
+colorscheme dracula
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')

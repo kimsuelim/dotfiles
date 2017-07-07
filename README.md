@@ -26,6 +26,7 @@ cd dotfiles
 sudo vi /etc/shells
 chpass -s /usr/local/bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+curl -fLo ~/.oh-my-zsh/themes/dracula.zsh-theme --create-dirs https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme
 
 ./dotsetup.sh
 ./xxenv_setup.sh
