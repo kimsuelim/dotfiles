@@ -12,8 +12,7 @@ brew upgrade
 brew tap homebrew/versions
 brew tap homebrew/binary
 brew tap homebrew/dupes
-#brew tap phinze/homebrew-cask
-#brew tap marcqualie/nginx
+brew tap caskroom/fonts
 
 # .dmg
 brew cask install iterm2
@@ -34,12 +33,20 @@ brew cask install mplayerx
 brew cask install vlc
 brew cask install github-desktop
 
+# fonts
+brew cask install font-fira-code
+brew cask install font-hermit
+brew cask install font-profontx
+
 # Packages
 brew install git
 brew install hub
 brew install tig
 brew install zsh
 brew install tmux
+brew install neovim/neovim/neovim
+brew install ctags
+brew install ag
 brew install reattach-to-user-namespace
 
 brew install kotlin
@@ -49,8 +56,6 @@ brew install go
 brew install yarn
 
 brew install imagemagick
-brew install ctags
-brew install ag
 brew install aspell
 brew install autoconf
 brew install automake
@@ -75,13 +80,13 @@ brew install proctools
 brew install pssh
 brew install pstree
 brew install readline
-brew install sqlite
 brew install ssh-copy-id
 
 brew install tree
 brew install watch
 brew install wget
 
+brew install sqlite
 brew install mysql
 brew install postgresql
 brew install redis
