@@ -1,6 +1,6 @@
-set nocompatible      " We're running Vim, not Vi!
-set statusline=%{fugitive#statusline()}\ %<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+set nocompatible
 syntax on
+set statusline=%{fugitive#statusline()}\ %<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
 set tags=./tags,./TAGS,tags,TAGS
 set encoding=utf-8
@@ -16,14 +16,28 @@ set smartindent
 set et
 set backspace=2                   " make backspace work like most other apps"
 
+set autoread
+set belloff=all
+set complete-=i
+set display+=lastline
+set formatoptions=tcqj
+set smarttab
+set tabpagemax=50
+set langnoremap
+set langremap
+set listchars="tab:> ,trail:-,nbsp:+"
+set nrformats="bin,hex"
+set sessionoptions-=options
+
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 set showmatch                     " Show matching brackets/parenthesis
 set hidden                        " Handle multiple buffers better.
 set title                         " Set the terminal's title
 set number                        " Show line numbers.
-set ruler		                      " Show the cursor position all the time
-set scrolloff=3
+set ruler                         " Show the cursor position all the time
+set scrolloff=1
+set sidescrolloff=5
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
 set wildignore+=*/node_modules/*,*/tmp/**,*.so,*.swp,*.zip,*~     " Stuff to ignore when tab completing (MacOSX/Linux)
@@ -43,7 +57,7 @@ set foldmethod=manual
 set undofile
 set nobackup                      " Don't make a backup before overwriting a file.
 set noswapfile
-set history=50		                " Keep 50 lines of command line history
+set history=50                    " Keep 50 lines of command line history
 set clipboard=unnamed
 
 " Searching/moving
@@ -58,13 +72,9 @@ set gdefault
 set nowrap                        " Don't wrap lines
 set linebreak
 set textwidth=90
-set formatoptions=qrn1
 set colorcolumn=95
 
-" Set list
-set listchars=tab:▸\ ,eol:¬
-
-" Disable arrow keys
+" Disable arrow keys completely in Insert Mode
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -73,6 +83,11 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+nnoremap <Left> :vertical resize -1<CR>
+nnoremap <Right> :vertical resize +1<CR>
+nnoremap <Up> :resize -1<CR>
+nnoremap <Down> :resize +1<CR>
+
 nnoremap j gj
 nnoremap k gk
 inoremap <F1> <ESC>
@@ -89,6 +104,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>c :CtrlP<CR>
+nnoremap <leader>p :CtrlP<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>] :TagbarToggle<CR>
@@ -168,18 +184,19 @@ Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'jimenezrick/vimerl'
 Plug 'rhysd/vim-crystal'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 " tools
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
 Plug 'godlygeek/tabular'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'rking/ag.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'majutsushi/tagbar'
+Plug 'rking/ag.vim', { 'on': 'Ag' }
+Plug 'majutsushi/tagbar', { 'on': ['Tagbar', 'TagbarToggle'] }
 Plug 'tomtom/tcomment_vim'
 Plug 'sickill/vim-pasta' " Pasting in Vim with indentation adjusted to destination context.
 Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
@@ -190,7 +207,6 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-scripts/matchit.zip'
-
 " color theme
 " Plug 'morhetz/gruvbox'
 " Plug 'tomasr/molokai'
@@ -206,6 +222,10 @@ call plug#end()
 " *           Plugin Customization            *
 " *********************************************
 
+" indentLine
+let g:indentLine_enabled = 1
+let g:indentLine_char = "⟩"
+
 " vim-markdown-preview
 let vim_markdown_preview_github = 1
 
@@ -213,12 +233,10 @@ let vim_markdown_preview_github = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-" Disable auto popup, use <Tab> to autocomplete
-let g:clang_complete_auto = 0
-" Show clang errors in the quickfix window
-let g:clang_complete_copen = 1
-
+" nerdtree
 let g:NERDSpaceDelims=1
+
+" vim-gitgutter
 let g:gitgutter_enabled = 0
 
 " extra rails.vim help
