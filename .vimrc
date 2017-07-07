@@ -143,71 +143,64 @@ map <Leader>ado :argdo %s///ge \| update
 map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `ag -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
 "--------------------------------------------
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle
-
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-markdown'
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-markdown'
 
 " tmux
-Plugin 'jgdavey/vim-turbux'
-Plugin 'benmills/vimux'
+Plug 'jgdavey/vim-turbux'
+Plug 'benmills/vimux'
 
 " language
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'kana/vim-textobj-user' " Trigger by press var and vir
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'jimenezrick/vimerl' " Erlang
-Plugin 'rhysd/vim-crystal'
+Plug 'vim-ruby/vim-ruby'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'kana/vim-textobj-user' " Trigger by press var and vir
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'jimenezrick/vimerl'
+Plug 'rhysd/vim-crystal'
 
 " tools
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'FelikZ/ctrlp-py-matcher'
-Plugin 'rking/ag.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'sickill/vim-pasta' " Pasting in Vim with indentation adjusted to destination context.
-Plugin 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
-Plugin 'ervandew/supertab'
-Plugin 'YankRing.vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'vim-scripts/matchit.zip'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
+Plug 'godlygeek/tabular'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'rking/ag.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'tomtom/tcomment_vim'
+Plug 'sickill/vim-pasta' " Pasting in Vim with indentation adjusted to destination context.
+Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
+Plug 'ervandew/supertab'
+Plug 'tomtom/tlib_vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'vim-scripts/matchit.zip'
 
 " color theme
-Plugin 'morhetz/gruvbox'
-Plugin 'tomasr/molokai'
-Plugin 'sickill/vim-monokai'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'endel/vim-github-colorscheme'
-Plugin '29decibel/codeschool-vim-theme'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'dracula/vim'
-
-call vundle#end()
-filetype plugin indent on         " load file type plugins + indentation
+" Plug 'morhetz/gruvbox'
+" Plug 'tomasr/molokai'
+" Plug 'sickill/vim-monokai'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'endel/vim-github-colorscheme'
+" Plug '29decibel/codeschool-vim-theme'
+" Plug 'w0ng/vim-hybrid'
+Plug 'dracula/vim'
+call plug#end()
 
 " *********************************************
 " *           Plugin Customization            *
@@ -310,6 +303,7 @@ nmap _= :call Preserve("normal gg=G")<CR>
 if has("gui_running")
   set guioptions=-t
   set guifont=Hermit\ medium:h14
+  " set guifont=Fira\ Code\ Retina:h14
   " set guifont=ProFontX:h13
 endif
 

@@ -85,9 +85,9 @@ brew install kotlin
 
 ### Vim
 
-```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-Launch vim and run :PluginInstall
+```sh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# Launch vim and :PlugInstall to install plugins.
 ```
 
 ### Sublime Text
