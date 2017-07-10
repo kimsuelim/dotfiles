@@ -1,6 +1,5 @@
 set nocompatible
 syntax on
-set statusline=%{fugitive#statusline()}\ %<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
 set tags=./tags,./TAGS,tags,TAGS
 set encoding=utf-8
@@ -28,6 +27,7 @@ set langremap
 set listchars="tab:> ,trail:-,nbsp:+"
 set nrformats="bin,hex"
 set sessionoptions-=options
+set completeopt=longest,menuone
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -74,6 +74,9 @@ set linebreak
 set textwidth=90
 set colorcolumn=95
 
+" disable mouse
+set mouse=r
+
 " Disable arrow keys completely in Insert Mode
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -83,32 +86,39 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" Setting Arrow Keys to Resize Panes
 nnoremap <Left> :vertical resize -1<CR>
 nnoremap <Right> :vertical resize +1<CR>
 nnoremap <Up> :resize -1<CR>
 nnoremap <Down> :resize +1<CR>
 
-nnoremap j gj
-nnoremap k gk
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-"nnoremap ; :
-au FocusLost * :wa
 inoremap jj <ESC>
 
+nnoremap <tab> %
+vnoremap <tab> %
+nnoremap / /\v
+vnoremap / /\v
+
 let mapleader = ","
+" let mapleader = "\<SPACE>"
 nnoremap <leader><space> :noh<cr>
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-nnoremap <leader>a :Ag<space>
+map ` :VimFiler -explorer<CR>
+map ~ :VimFilerCurrentDir -explorer -find<CR>
+nnoremap <leader>g :Grepper -tool git<cr>
+nnoremap <leader>G :Grepper -tool ag<cr>
+" type a search to find matches in entire project
+nnoremap <leader>fp :Grepper<Space>-query<Space>
+" type a search to find matches in current buffers
+nnoremap <leader>fb :Grepper<Space>-buffers<Space>-query<Space>-<Space>
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>c :CtrlP<CR>
 nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>] :TagbarToggle<CR>
-nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gs :Gstatus<CR>
 " I work with HTML often, so I have ,ft mapped to a “fold tag” function
@@ -122,17 +132,22 @@ nnoremap <leader>q gqip
 " I have a ,v mapping to reselect the text that was just pasted so I can perform commands (like indentation) on it
 nnoremap <leader>v V`]
 " This last mapping lets me quickly open up my ~/.vimrc file in a vertically split window
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-nnoremap <tab> %
-vnoremap <tab> %
-nnoremap / /\v
-vnoremap / /\v
+nnoremap <leader>ev <C-w>v<C-w>l :e $MYVIMRC<cr>
+nnoremap <leader>so :source $MYVIMRC<cr>
 
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
 
+" open previously opened file buffer
+nmap <leader><Tab> <c-^>
+" Tab to switch to next buffer
+nnoremap <Tab> :bnext!<CR>
+" Shift Tab to switch to previous buffer
+nnoremap <S-Tab> :bprev!<CR><Paste>
+
 " Split windows
-nnoremap <leader>W <C-w><C-v><C-l>
+nnoremap <leader>wv <C-w>v<C-w>l
+nnoremap <leader>ws <C-w>s<C-w>j
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -143,20 +158,15 @@ nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 nnoremap <leader>y :YRShow<CR>
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
 " Substitute all occurrences of the word under the cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Finds and replaces in files based on the the current line.
-" map <Leader>fr ^l"ayt/^v$h"byu:vsp<CR>:args `ag -l <C-R>a`<CR>:argdo %s<C-R>bge \| update<CR>
-map <Leader>as :args `ag -l `<Left>
+map <Leader>as :args `Grepper -tool git`<Left>
 map <Leader>ado :argdo %s///ge \| update
 
 " Same as above but asks before all the changes.
-map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `ag -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
+map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `Grepper -tool git <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
 "--------------------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -184,19 +194,23 @@ Plug 'pangloss/vim-javascript'
 Plug 'kchmck/vim-coffee-script'
 Plug 'jimenezrick/vimerl'
 Plug 'rhysd/vim-crystal'
+Plug 'udalov/kotlin-vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
 
 " tools
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim', { 'on': 'VimFiler' }
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
 Plug 'godlygeek/tabular'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'majutsushi/tagbar', { 'on': ['Tagbar', 'TagbarToggle'] }
+Plug 'mhinz/vim-grepper'
 Plug 'tomtom/tcomment_vim'
 Plug 'sickill/vim-pasta' " Pasting in Vim with indentation adjusted to destination context.
 Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
@@ -222,9 +236,20 @@ call plug#end()
 " *           Plugin Customization            *
 " *********************************************
 
+" disable annoying popup
+" Place it after you initialize Syntastic and Pathogen, if you use those plugins.
+set noballooneval
+set balloondelay=100000
+setlocal balloonexpr=
+
 " indentLine
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
 let g:indentLine_char = "⟩"
+
+" vim-airline
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+set laststatus=2
 
 " vim-markdown-preview
 let vim_markdown_preview_github = 1
@@ -233,11 +258,8 @@ let vim_markdown_preview_github = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-" nerdtree
-let g:NERDSpaceDelims=1
-
 " vim-gitgutter
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 
 " extra rails.vim help
 let g:rails_projections = {
@@ -277,7 +299,7 @@ let g:rails_projections = {
 " let g:rubycomplete_classes_in_global = 1
 " let g:rubycomplete_rails = 1
 
-"# ctrlp.vim
+" ctrlp.vim
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
@@ -333,11 +355,6 @@ endif
 " colorscheme codeschool
 " colorscheme hybrid
 colorscheme dracula
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
 
 if has("autocmd")
  " When editing a file, always jump to the last known cursor position.
