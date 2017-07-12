@@ -51,21 +51,31 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler vagrant)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Enabling Color Prompts
+autoload colors zsh/terminfo
+colors
 
+# Autostart Tmux
+if [ "$TMUX" = "" ]; then tmux; fi
+
+# Spellcheck / Typo Correction
+setopt correctall
+
+# rbenv
 eval "$(rbenv init -)"
+
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+# alias
 alias zipbob_web="ssh deploy@www.zipbob.net"
 alias zipbob_db="ssh deployer@14.63.184.31"
-# alias zipbob_intra="ssh ubuntu@intra.zipbob.net"
 alias zipbob_intra="ssh ubuntu@13.124.63.85"
-
 alias ssaida_app="ssh deploy@www.ssaida.com"
 
 alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"

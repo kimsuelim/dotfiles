@@ -23,13 +23,21 @@ cd dotfiles
 ### zsh
 
 ```
-sudo vi /etc/shells
 chpass -s /usr/local/bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 curl -fLo ~/.oh-my-zsh/themes/dracula.zsh-theme --create-dirs https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 ./dotsetup.sh
 ./xxenv_setup.sh
+```
+
+### tmux
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# Add new plugin to ~/.tmux.conf with set -g @plugin '...'
+# Press prefix + I (capital I, as in Install) to fetch the plugin.
 ```
 
 ### rbenv
