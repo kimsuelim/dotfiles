@@ -42,13 +42,11 @@ export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-export EDITOR="mvim"
 export DISABLE_AUTO_TITLE=true
-export EDITOR='vim'
+export EDITOR='vi'
 export PAGER='less'
 export LESS='-R -g -j10 --no-init --quit-if-one-screen'
 
-# export LANG='ko_KR.UTF-8'
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 

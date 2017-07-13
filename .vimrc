@@ -104,22 +104,19 @@ nnoremap / /\v
 vnoremap / /\v
 
 let mapleader = ","
-" let mapleader = "\<SPACE>"
 nnoremap <leader><space> :noh<cr>
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-map ` :VimFiler -explorer<CR>
-map ~ :VimFilerCurrentDir -explorer -find<CR>
 nnoremap <leader>g :Grepper -tool git<cr>
 nnoremap <leader>G :Grepper -tool ag<cr>
 " type a search to find matches in entire project
 nnoremap <leader>fp :Grepper<Space>-query<Space>
 " type a search to find matches in current buffers
 nnoremap <leader>fb :Grepper<Space>-buffers<Space>-query<Space>-<Space>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>t :CtrlP<CR>
+nnoremap <leader>cb :CtrlPBuffer<CR>
+nnoremap <leader>cp :CtrlP<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gv :Gvdiff<CR>
 nnoremap <leader>gs :Gstatus<CR>
 " I work with HTML often, so I have ,ft mapped to a “fold tag” function
 nnoremap <leader>ft Vatzf
@@ -132,8 +129,8 @@ nnoremap <leader>q gqip
 " I have a ,v mapping to reselect the text that was just pasted so I can perform commands (like indentation) on it
 nnoremap <leader>v V`]
 " This last mapping lets me quickly open up my ~/.vimrc file in a vertically split window
-nnoremap <leader>ev <C-w>v<C-w>l :e $MYVIMRC<cr>
-nnoremap <leader>so :source $MYVIMRC<cr>
+nnoremap <leader>E <C-w>v<C-w>l :e ~/dev/dotfiles/.vimrc<cr>
+nnoremap <leader>R :source $MYVIMRC<cr>
 
 " Shortcut to rapidly toggle `set list`
 nnoremap <leader>l :set list!<CR>
@@ -167,6 +164,8 @@ map <Leader>ado :argdo %s///ge \| update
 
 " Same as above but asks before all the changes.
 map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `Grepper -tool git <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
+
+map <leader>hn :help netrw-quickmap<CR>
 "--------------------------------------------
 
 call plug#begin('~/.vim/plugged')
@@ -199,11 +198,11 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 
 " tools
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler.vim', { 'on': 'VimFiler' }
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-syntastic/syntastic'
 " Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
 Plug 'godlygeek/tabular'
@@ -375,6 +374,8 @@ if has("autocmd")
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType kotlin setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
