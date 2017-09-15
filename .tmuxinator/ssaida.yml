@@ -8,10 +8,10 @@ windows:
       layout: even-horizontal
       panes:
         - bin/rails s
-        - cd frontend; gulp watch
+        - cd frontend; yarn run gulp watch
   - console: bin/rails c
   - db: bin/rails db
   - logs: tail -f log/development.log
   - frontend: cd frontend
-  - capistrano: mvim
+  - capistrano:
   - server: #ssh deploy@www.ssaida.com

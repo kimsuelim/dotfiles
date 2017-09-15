@@ -56,6 +56,8 @@ brew install go
 brew install yarn
 
 brew install imagemagick
+brew install jpegoptim
+brew install optipng
 brew install aspell
 brew install autoconf
 brew install automake

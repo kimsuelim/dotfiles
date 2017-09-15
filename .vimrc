@@ -87,6 +87,14 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" Split windows
+nnoremap <leader>wv <C-w>v<C-w>l
+nnoremap <leader>ws <C-w>s<C-w>j
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
+
 " Setting Arrow Keys to Resize Panes
 nnoremap <Left> :vertical resize -1<CR>
 nnoremap <Right> :vertical resize +1<CR>
@@ -107,27 +115,35 @@ let mapleader = ","
 nnoremap <leader><space> :noh<cr>
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-nnoremap <leader>g :Grepper -tool git<cr>
-nnoremap <leader>G :Grepper -tool ag<cr>
-" type a search to find matches in entire project
-nnoremap <leader>fp :Grepper<Space>-query<Space>
-" type a search to find matches in current buffers
-nnoremap <leader>fb :Grepper<Space>-buffers<Space>-query<Space>-<Space>
 nnoremap <leader>cb :CtrlPBuffer<CR>
 nnoremap <leader>cp :CtrlP<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gv :Gvdiff<CR>
 nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gg :Ggrep! <Bar> copen
+nnoremap <leader>g :Grepper -tool git<cr>
+nnoremap <leader>G :Grepper -tool ag<cr>
+" type a search to find matches in entire project
+nnoremap <leader>fp :Grepper -tool git -query<Space>
+" type a search to find matches in current buffers
+nnoremap <leader>fb :Grepper -tool git -buffers -query<Space>
+
+" Finds and replaces in files based on the the current line.
+map <leader>cdo :cdo s///gc <Bar> update
+
+" Substitute all occurrences of the word under the cursor
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " I work with HTML often, so I have ,ft mapped to a “fold tag” function
 nnoremap <leader>ft Vatzf
-nnoremap <leader>it vat
-nnoremap <leader>at vit
 " I also work with Nick Sergeant and he likes his CSS properties sorted, so here’s a ,S mapping that sorts them for me
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " This next mapping imitates TextMates Ctrl+Q function to re-hardwrap paragraphs of text
 nnoremap <leader>q gqip
 " I have a ,v mapping to reselect the text that was just pasted so I can perform commands (like indentation) on it
 nnoremap <leader>v V`]
+" It pastes, visually selects pasted text and then re-indents it
+nnoremap <leader>p p`[v`]=
 " This last mapping lets me quickly open up my ~/.vimrc file in a vertically split window
 nnoremap <leader>E <C-w>v<C-w>l :e ~/dev/dotfiles/.vimrc<cr>
 nnoremap <leader>R :source $MYVIMRC<cr>
@@ -142,28 +158,26 @@ nnoremap <Tab> :bnext!<CR>
 " Shift Tab to switch to previous buffer
 nnoremap <S-Tab> :bprev!<CR><Paste>
 
-" Split windows
-nnoremap <leader>wv <C-w>v<C-w>l
-nnoremap <leader>ws <C-w>s<C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 " YankRing
 nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 nnoremap <leader>y :YRShow<CR>
 
-" Substitute all occurrences of the word under the cursor
-nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
-
-" Finds and replaces in files based on the the current line.
-map <Leader>as :args `Grepper -tool git`<Left>
-map <Leader>ado :argdo %s///ge \| update
-
-" Same as above but asks before all the changes.
-map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `Grepper -tool git <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
+" vimux
+" Run the current file with rspec
+map <Leader>rb :call VimuxRunCommand("clear; rake test " . bufname("%"))<CR>
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+" Interrupt any command running in the runner pane
+map <Leader>vx :VimuxInterruptRunner<CR>
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+map <Leader>vz :call VimuxZoomRunner()<CR>
 
 map <leader>hn :help netrw-quickmap<CR>
 "--------------------------------------------
@@ -178,15 +192,10 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-markdown'
-
-" tmux
-Plug 'jgdavey/vim-turbux'
-Plug 'benmills/vimux'
+" Plug 'tpope/vim-dispatch'
 
 " language
 Plug 'vim-ruby/vim-ruby'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'kana/vim-textobj-user' " Trigger by press var and vir
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'pangloss/vim-javascript'
@@ -195,6 +204,7 @@ Plug 'jimenezrick/vimerl'
 Plug 'rhysd/vim-crystal'
 Plug 'udalov/kotlin-vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'janko-m/vim-test'
 
 " tools
 Plug 'Shougo/unite.vim'
@@ -203,30 +213,25 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
 Plug 'vim-syntastic/syntastic'
 " Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
 Plug 'godlygeek/tabular'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mhinz/vim-grepper'
 Plug 'tomtom/tcomment_vim'
-Plug 'sickill/vim-pasta' " Pasting in Vim with indentation adjusted to destination context.
 Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
-Plug 'ervandew/supertab'
-Plug 'tomtom/tlib_vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-scripts/matchit.zip'
+
 " color theme
 " Plug 'morhetz/gruvbox'
-" Plug 'tomasr/molokai'
 " Plug 'sickill/vim-monokai'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'endel/vim-github-colorscheme'
-" Plug '29decibel/codeschool-vim-theme'
 " Plug 'w0ng/vim-hybrid'
 Plug 'dracula/vim'
 call plug#end()
@@ -252,10 +257,6 @@ set laststatus=2
 
 " vim-markdown-preview
 let vim_markdown_preview_github = 1
-
-" SuperTab option for context aware completion
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " vim-gitgutter
 let g:gitgutter_enabled = 1
@@ -300,20 +301,10 @@ let g:rails_projections = {
 
 " ctrlp.vim
 let g:ctrlp_match_window = 'order:ttb,max:20'
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ -g ""'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
-" vimux
-let g:VimuxHeight = "30"
-let g:VimuxOrientation = "h"
-
-" turbux
-let g:turbux_command_test_unit = 'rails test'
+" vim-test
+let test#strategy = "vimux"
 
 " syntastic
 let g:syntastic_check_on_wq = 0
@@ -347,11 +338,9 @@ if has("gui_running")
 endif
 
 " colorscheme gruvbox
-" colorscheme molokai
 " colorscheme monokai
 " colorscheme jellybeans
 " colorscheme github
-" colorscheme codeschool
 " colorscheme hybrid
 colorscheme dracula
 
@@ -366,19 +355,10 @@ if has("autocmd")
        \   exe "normal! g`\"" |
        \ endif
 
-  augroup END
-
  " Syntax of these languages is fussy over tabs Vs spaces
   autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType kotlin setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
-
-  " Treat .rss files as XML
-  autocmd BufNewFile,BufRead *.rss setfiletype xml
 
   " run this command automatically when a file is saved
   " autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")

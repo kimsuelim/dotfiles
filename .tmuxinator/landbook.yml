@@ -1,0 +1,12 @@
+name: landbook
+root: ~/dev/landbook
+pre_window: rbenv shell 2.4.0
+
+windows:
+  - editor: vi
+  - server: bin/rails s
+  - console: bin/rails c
+  - db: bin/rails db
+  - logs: tail -f log/development.log
+  - capistrano: 
+  - server: 
