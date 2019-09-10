@@ -207,16 +207,16 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'janko-m/vim-test'
 
 " tools
-Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 " Plug 'vim-syntastic/syntastic', { 'on': 'SyntasticCheck' }
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'mhinz/vim-grepper'
@@ -225,15 +225,15 @@ Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/YankRing.vim'
-Plug 'vim-scripts/matchit.zip'
+Plug 'benjifisher/matchit.zip'
+" Plug 'andymass/vim-matchup'
 
 " color theme
-" Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
 " Plug 'sickill/vim-monokai'
 " Plug 'nanotech/jellybeans.vim'
-" Plug 'endel/vim-github-colorscheme'
 " Plug 'w0ng/vim-hybrid'
-Plug 'dracula/vim'
 call plug#end()
 
 " *********************************************
@@ -245,6 +245,10 @@ call plug#end()
 set noballooneval
 set balloondelay=100000
 setlocal balloonexpr=
+
+" netrw
+" Allow netrw to remove non-empty local directories
+let g:netrw_localrmdir="rm -rf"
 
 " indentLine
 let g:indentLine_enabled = 0
@@ -263,6 +267,33 @@ let g:gitgutter_enabled = 1
 
 " extra rails.vim help
 let g:rails_projections = {
+      \ "app/javascript/*.js": {
+      \   "command": "webpack",
+      \   "test": [
+      \     "test/unit/{}_service_test.rb",
+      \     "spec/models/{}_service_spec.rb"
+      \   ],
+      \   "keywords": "process version"
+      \ },
+      \ "app/services/*.rb": {
+      \   "command": "service",
+      \   "test": [
+      \     "test/unit/{}_service_test.rb",
+      \     "spec/models/{}_service_spec.rb"
+      \   ],
+      \   "keywords": "process version"
+      \ },
+      \ "app/chewy/*_index.rb": {
+      \   "command": "chewy",
+      \   "template":
+      \     ["class {camelcase|capitalize|colons}Index < "
+      \      . "Chewy::Index", "end"],
+      \   "test": [
+      \     "test/unit/{}_index_test.rb",
+      \     "spec/models/{}_index_spec.rb"
+      \   ],
+      \   "keywords": "process version"
+      \ },
       \ "app/uploaders/*_uploader.rb": {
       \   "command": "uploader",
       \   "template":
@@ -278,7 +309,7 @@ let g:rails_projections = {
       \   "command": "policy",
       \   "template":
       \     ["class {camelcase|capitalize|colons}Policy < "
-      \      . "CarrierWave::Uploader::Base", "end"],
+      \      . "ApplicationPolicy", "end"],
       \   "test": [
       \     "test/unit/{}_policy_test.rb",
       \     "spec/models/{}_policy_spec.rb"
@@ -313,6 +344,10 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_generic = 1
+let g:syntastic_javascript_eslint_exec = '/bin/ls'
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+let g:syntastic_javascript_eslint_args='-f compact'
 nnoremap <leader>e :SyntasticCheck<CR>
 
 " Tidying whitespace
@@ -335,6 +370,10 @@ if has("gui_running")
   set guifont=Hermit\ medium:h14
   " set guifont=Fira\ Code\ Retina:h14
   " set guifont=ProFontX:h13
+else
+  " set termguicolors
+  let g:dracula_italic = 0
+  let g:dracula_colorterm = 0
 endif
 
 " colorscheme gruvbox
@@ -361,7 +400,7 @@ if has("autocmd")
   autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
 
   " run this command automatically when a file is saved
-  " autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
+  autocmd BufWritePre .vimrc,*.rb,*.erb,*.css,*.scss,*.html,*.py,*.js,*.coffee :call Preserve("%s/\\s\\+$//e")
 
   " inky & ecr
   autocmd BufRead,BufNewFile *.inky set filetype=html.eruby

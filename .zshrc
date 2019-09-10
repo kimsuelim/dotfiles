@@ -68,18 +68,19 @@ setopt correctall
 # rbenv
 eval "$(rbenv init -)"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# rbenv
+eval "$(nodenv init -)"
+
+# jenv
+eval "$(jenv init -)"
 
 # alias
 alias zipbob_web="ssh deploy@www.zipbob.net"
-alias zipbob_db="ssh deployer@14.63.184.31"
-alias zipbob_intra="ssh ubuntu@13.124.63.85"
-alias ssaida_app="ssh deploy@www.ssaida.com"
+alias landbook_web="ssh deploy@www.landbook.net"
+alias itdaa_web="ssh deploy@www.itdaa.net"
+alias 42lab_web="ssh deploy@www.42lab.co.kr"
 
-alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
-alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias vi="/usr/local/bin/vim"
 alias tmux="TERM=screen-256color-bce tmux"
 alias crit="cordova run ios --target='iPhone-6s, 9.3'"
 alias ctags_rails="ctags -R --exclude=.git --exclude=log --exclude=coverage --exclude=node_modules --exclude=frontend/dist --exclude=frontend/node_modules --exclude=frontend/platforms --exclude=frontend/plugins --exclude=frontend/bower_components --exclude=frontend/src/vendor *"

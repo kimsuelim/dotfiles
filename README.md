@@ -6,7 +6,7 @@
 
 ```
 xcode-select --install
-sudo xcodebuild -license
+sudo xcodebuild -license accept
 
 sudo mkdir /usr/local
 sudo chown -R `whoami` /usr/local
@@ -36,60 +36,12 @@ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh
 ### tmux
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# type this in terminal if tmux is already running
+tmux source ~/.tmux.conf
+
 # Add new plugin to ~/.tmux.conf with set -g @plugin '...'
 # Press prefix + I (capital I, as in Install) to fetch the plugin.
-```
-
-### rbenv
-
-```
-git clone git@github.com:sstephenson/rbenv.git ~/.rbenv
-ln -nfs ~/dotfiles/default-gems ~/.rbenv/default-gems
-mkdir -p ~/.rbenv/plugins
-cd ~/.rbenv/plugins
-git clone git@github.com:sstephenson/ruby-build.git
-git clone git@github.com:sstephenson/rbenv-default-gems.git
-git clone git@github.com:rkh/rbenv-update.git
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# ruby required libssl-dev libreadline6-dev libncurses5-dev libsqlite3-dev
-# nokogiri required libxml2-dev libxslt1-dev
-rbenv install 2.4.0
-rbenv global  2.4.0
-rbenv rehash
-```
-
-### nvm
-
-```
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-
-" adds the source line to your profile (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-nvm install --lts
-nvm use --lts
-
-npm install -g cordova
-npm install -g gulp
-npm install -g bower
-npm install -g eslint
-npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
-```
-
-### Crystal
-
-```
-curl -fsSLo- https://raw.githubusercontent.com/samueleaton/sentry/master/install.rb | ruby
-```
-
-### Kotlin
-
-```
-brew install kotlin
 ```
 
 ### Vim
@@ -103,4 +55,80 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 
 ```
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+```
+
+### rbenv
+
+```
+brew install rbenv
+mkdir -p $(rbenv root)
+ln -nfs $PWD/default-gems $(rbenv root)/default-gems
+mkdir -p $(rbenv root)/plugins
+git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/rbenv-default-gems
+
+eval "$(rbenv init -)"
+
+rbenv install 2.6.4
+rbenv global  2.6.4
+rbenv rehash
+```
+
+### nodenv
+
+```
+brew install nodenv
+mkdir -p $(nodenv root)
+
+eval "$(rbenv init -)"
+
+nodenv install 10.16.3
+nodenv global 10.16.3
+npm install -g eslint
+npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+nodenv rehash
+```
+
+### jenv
+
+```
+brew install jenv
+mkdir -p $(jenv root)
+
+eval "$(jenv init -)"
+
+brew cask install java
+
+jenv global 11
+jenv rehash
+```
+
+### nvm
+
+```
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+" adds the source line to your profile (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+nvm install --lts
+nvm use --lts
+
+npm install -g cordova
+npm install -g gulp
+npm install -g eslint
+npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+```
+
+### Crystal
+
+```
+brew install crystal-lang
+```
+
+### Kotlin
+
+```
+brew install kotlin
 ```

@@ -1,6 +1,6 @@
 name: landbook
 root: ~/dev/landbook
-pre_window: rbenv shell 2.4.0
+# pre_window: rbenv shell 2.4.0
 
 windows:
   - editor: vi

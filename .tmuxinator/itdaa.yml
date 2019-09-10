@@ -1,0 +1,15 @@
+name: itdaa
+root: ~/dev/itdaa
+
+windows:
+  - editor: vi
+  - server: 
+      layout: even-horizontal
+      panes:
+        - bin/rails s
+        - bin/webpack-dev-server 
+  - console: bin/rails c
+  - db: bin/rails db
+  - logs: tail -f log/development.log
+  - capistrano: 
+  - server: 
