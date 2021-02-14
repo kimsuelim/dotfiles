@@ -1,8 +1,6 @@
 bundler
 tmuxinator
 mailcatcher
-allocation_tracer
 benchmark-ips
 ec2ssh
 hotdog
-td

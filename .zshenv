@@ -39,6 +39,18 @@ fi
 export ANDROID_HOME="/Users/kimsuelim/Library/Android/sdk"
 export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 
+# rbenv
+eval "$(rbenv init -)"
+
+# rbenv
+eval "$(nodenv init -)"
+
+# jenv
+eval "$(jenv init -)"
+
+# docker-machine
+# eval "$(docker-machine env)"
+
 export DISABLE_AUTO_TITLE=true
 export EDITOR='vi'
 export PAGER='less'

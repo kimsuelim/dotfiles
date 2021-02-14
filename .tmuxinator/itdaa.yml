@@ -3,13 +3,17 @@ root: ~/dev/itdaa
 
 windows:
   - editor: vi
-  - server: 
+  - server:
       layout: even-horizontal
       panes:
-        - bin/rails s
-        - bin/webpack-dev-server 
+        # - bin/rails s
+        - bin/webpack-dev-server
   - console: bin/rails c
   - db: bin/rails db
-  - logs: tail -f log/development.log
-  - capistrano: 
-  - server: 
+  - logs:
+      layout: even-horizontal
+      panes:
+        - tail -f log/development.log
+        - tail -f ~/Library/Logs/puma-dev.log
+  - capistrano:
+  - remote:
