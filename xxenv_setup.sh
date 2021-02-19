@@ -11,9 +11,12 @@ if [ ! -d ~/.rbenv ]; then
 
   eval "$(rbenv init -)"
 
-  rbenv install 2.6.4
-  rbenv global  2.6.4
+  rbenv install 2.6.6
+  rbenv global  2.6.6
   rbenv rehash
+
+  # mysql2 gem with mysql@5.7 brew
+  bundle config --global build.mysql2 --with-opt-dir="$(brew --prefix openssl)"
 fi
 
 if [ ! -d ~/.nodenv ]; then
@@ -22,10 +25,11 @@ if [ ! -d ~/.nodenv ]; then
 
   eval "$(rbenv init -)"
 
-  nodenv install 10.16.3
-  nodenv global 10.16.3
+  nodenv install 10.19.0
+  nodenv global 10.19.0
   npm install -g eslint
   npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+  npm install mjml
   nodenv rehash
 fi
 

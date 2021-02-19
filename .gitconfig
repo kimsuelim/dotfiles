@@ -40,3 +40,5 @@
   helper = cache
 [ghq]
   root = ~/src
+[pull]
+	rebase = false

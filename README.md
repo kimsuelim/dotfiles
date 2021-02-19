@@ -8,9 +8,7 @@
 xcode-select --install
 sudo xcodebuild -license accept
 
-sudo mkdir /usr/local
-sudo chown -R `whoami` /usr/local
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 brew doctor
 
@@ -23,11 +21,16 @@ cd dotfiles
 ### zsh
 
 ```
-chpass -s /usr/local/bin/zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-curl -fLo ~/.oh-my-zsh/themes/dracula.zsh-theme --create-dirs https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme
+# chpass -s /usr/local/bin/zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+git clone https://github.com/dracula/zsh.git
+cd zsh
+cp -a lib ~/.oh-my-zsh/themes
+cp dracula.zsh-theme ~/.oh-my-zsh/themes
+#curl -fLo ~/.oh-my-zsh/themes/dracula.zsh-theme --create-dirs https://raw.githubusercontent.com/dracula/zsh/master/dracula.zsh-theme
 
 ./dotsetup.sh
 ./xxenv_setup.sh
@@ -68,8 +71,8 @@ git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/
 
 eval "$(rbenv init -)"
 
-rbenv install 2.6.4
-rbenv global  2.6.4
+rbenv install 2.6.6
+rbenv global  2.6.6
 rbenv rehash
 ```
 
@@ -81,10 +84,11 @@ mkdir -p $(nodenv root)
 
 eval "$(rbenv init -)"
 
-nodenv install 10.16.3
-nodenv global 10.16.3
+nodenv install 10.19.0
+nodenv global 10.19.0
 npm install -g eslint
 npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+npm install mjml
 nodenv rehash
 ```
 
