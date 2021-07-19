@@ -3,7 +3,7 @@
 set -eux
 
 if [ ! -d ~/.rbenv ]; then
-  brew install rbenv
+  brew install rbenv rbenv-build
   mkdir -p $(rbenv root)
   ln -nfs $PWD/default-gems $(rbenv root)/default-gems
   mkdir -p $(rbenv root)/plugins
@@ -11,8 +11,9 @@ if [ ! -d ~/.rbenv ]; then
 
   eval "$(rbenv init -)"
 
-  rbenv install 2.6.6
-  rbenv global  2.6.6
+  rbenv install 2.6.8
+  rbenv global  2.6.8
+  ruby -v
   rbenv rehash
 
   # mysql2 gem with mysql@5.7 brew
@@ -20,29 +21,14 @@ if [ ! -d ~/.rbenv ]; then
 fi
 
 if [ ! -d ~/.nodenv ]; then
-  brew install nodenv
+  brew install nodenv node-build
   mkdir -p $(nodenv root)
 
-  eval "$(rbenv init -)"
+  eval "$(nodenv init -)"
 
-  nodenv install 10.19.0
-  nodenv global 10.19.0
-  npm install -g eslint
-  npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+  nodenv install 12.22.3
+  nodenv global 12.22.3
+  node -v
   npm install mjml
   nodenv rehash
 fi
-
-# if [ ! -d ~/.nvm ]; then
-#   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-#
-#   export NVM_DIR="$HOME/.nvm"
-#   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-#
-#   nvm install --lts
-#   nvm use --lts
-#
-#   npm install -g cordova
-#   npm install -g gulp
-#   npm install -g eslint
-# fi

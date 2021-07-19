@@ -8,8 +8,9 @@
 xcode-select --install
 sudo xcodebuild -license accept
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Installing Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew doctor
 
 git clone https://github.com/kimsuelim/dotfiles.git
@@ -21,7 +22,6 @@ cd dotfiles
 ### zsh
 
 ```
-# chpass -s /usr/local/bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -54,16 +54,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 # Launch vim and :PlugInstall to install plugins.
 ```
 
-### Sublime Text
-
-```
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-```
-
 ### rbenv
 
 ```
-brew install rbenv
+brew install rbenv rbenv-build
 mkdir -p $(rbenv root)
 ln -nfs $PWD/default-gems $(rbenv root)/default-gems
 mkdir -p $(rbenv root)/plugins
@@ -71,24 +65,24 @@ git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/
 
 eval "$(rbenv init -)"
 
-rbenv install 2.6.6
-rbenv global  2.6.6
+rbenv install 2.6.8
+rbenv global  2.6.8
+ruby -v
 rbenv rehash
 ```
 
 ### nodenv
 
 ```
-brew install nodenv
+brew install nodenv node-build
 mkdir -p $(nodenv root)
 
-eval "$(rbenv init -)"
+eval "$(nodenv init -)"
 
-nodenv install 10.19.0
-nodenv global 10.19.0
-npm install -g eslint
-npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+nodenv install 12.22.3
+nodenv global 12.22.3
 npm install mjml
+node -v
 nodenv rehash
 ```
 
@@ -104,25 +98,6 @@ brew cask install java
 
 jenv global 11
 jenv rehash
-```
-
-### nvm
-
-```
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-
-" adds the source line to your profile (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-nvm install --lts
-nvm use --lts
-
-npm install -g cordova
-npm install -g gulp
-npm install -g eslint
-npm install -g eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
 ```
 
 ### Crystal
