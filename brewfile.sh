@@ -61,10 +61,14 @@ brew services start postgresql
 brew install redis
 brew services start redis
 # brew install mongodb
+brew tap elastic/tap
+brew install elastic/tap/elasticsearch-full
+elasticsearch-plugin install analysis-nori
+brew services start elastic/tap/elasticsearch-full
 # brew install elasticsearch
 # brew install kibana
-brew install elasticsearch@6
-brew services start elasticsearch@6
+# brew install elasticsearch@6
+# brew services start elasticsearch@6
 
 brew install vips
 brew install imagemagick
