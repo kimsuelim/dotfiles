@@ -67,8 +67,6 @@ elasticsearch-plugin install analysis-nori
 brew services start elastic/tap/elasticsearch-full
 # brew install elasticsearch
 # brew install kibana
-# brew install elasticsearch@6
-# brew services start elasticsearch@6
 
 brew install vips
 brew install imagemagick

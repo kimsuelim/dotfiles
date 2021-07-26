@@ -187,9 +187,13 @@ Plug 'tpope/vim-eunuch'
 " language
 Plug 'vim-ruby/vim-ruby'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 Plug 'chr4/nginx.vim'
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+" or Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'mustache/vim-mustache-handlebars'
 " Plug 'kchmck/vim-coffee-script'
 " Plug 'jimenezrick/vimerl'
@@ -279,9 +283,11 @@ nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
 " ale
+let g:ale_linter_aliases = {'javascriptreact': ['css', 'javascript']}
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'ruby': ['ruby', 'rubocop'],
+\   'javascriptreact': ['stylelint', 'eslint']
 \}
 let g:ale_fixers = { 'ruby': ['rubocop'], 'javascript': ['eslint'] }
 let g:ale_lint_on_save = 1

@@ -1,0 +1,17 @@
+name: react-rails-graphql-apollo-tailwind
+root: ~/dev/react-rails-graphql-apollo-tailwind
+
+windows:
+  - editor: vi
+  - server:
+      layout: even-horizontal
+      panes:
+        - yarn start
+  - console: yarn test
+  - db: bin/rails db
+  - logs:
+      layout: even-horizontal
+      panes:
+        - tail -f log/development.log
+  - capistrano:
+  - remote:
