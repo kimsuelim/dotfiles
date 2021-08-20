@@ -16,6 +16,7 @@ brew tap aws/tap
 brew install iterm2
 brew install google-chrome
 brew install visual-studio-code
+brew install paw
 
 # fonts
 brew install font-hurmit-nerd-font
@@ -101,8 +102,6 @@ brew install wget
 # brew install wireshark
 
 # dmg 
-brew install visual-studio-code
-brew install postman
 brew install mjml
 brew install ngrok
 brew install authy

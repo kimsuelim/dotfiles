@@ -261,7 +261,7 @@
 			<key>ASCII Ligatures</key>
 			<false/>
 			<key>Allow Title Setting</key>
-			<false/>
+			<true/>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -520,7 +520,7 @@
 			<key>Horizontal Spacing</key>
 			<real>1</real>
 			<key>Icon</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Use Transparency</key>
@@ -837,7 +837,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>mononokiNerdFontCompleteM-Regular 14</string>
+			<string>mononokiNerdFontCompleteM-Regular 16</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -887,7 +887,7 @@
 			<key>Thin Strokes</key>
 			<integer>1</integer>
 			<key>Title Components</key>
-			<integer>513</integer>
+			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
