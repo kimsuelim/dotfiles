@@ -65,6 +65,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_TMUX_AUTOSTART=true
 plugins=(
   git
+  heroku
   tmux
   docker
   docker-compose

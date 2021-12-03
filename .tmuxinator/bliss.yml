@@ -1,0 +1,19 @@
+name: bliss
+root: ~/dev/bliss
+
+windows:
+  - editor: vi
+  - server:
+      layout: even-horizontal
+      panes:
+        - bin/rails s
+        - bin/webpack-dev-server
+  - console: bin/rails c
+  - db: bin/rails db
+  - logs:
+      layout: even-horizontal
+      panes:
+        - tail -f log/development.log
+        - tail -f ~/Library/Logs/puma-dev.log
+  - capistrano:
+  - remote:

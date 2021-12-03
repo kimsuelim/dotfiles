@@ -65,8 +65,8 @@ git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/
 
 eval "$(rbenv init -)"
 
-rbenv install 2.6.8
-rbenv global  2.6.8
+rbenv install 3.0.3
+rbenv global 3.0.3
 ruby -v
 rbenv rehash
 ```
@@ -79,8 +79,8 @@ mkdir -p $(nodenv root)
 
 eval "$(nodenv init -)"
 
-nodenv install 12.22.3
-nodenv global 12.22.3
+nodenv install 12.22.7
+nodenv global 12.22.7
 npm install mjml
 node -v
 nodenv rehash
@@ -94,7 +94,7 @@ mkdir -p $(jenv root)
 
 eval "$(jenv init -)"
 
-brew cask install java
+brew install java
 
 jenv global 11
 jenv rehash

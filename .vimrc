@@ -313,6 +313,14 @@ let g:rails_projections = {
       \   ],
       \   "keywords": "process version"
       \ },
+      \ "app/forms/*_form.rb": {
+      \   "command": "form",
+      \   "test": [
+      \     "test/unit/{}_form_test.rb",
+      \     "spec/models/{}_form_spec.rb"
+      \   ],
+      \   "keywords": "process version"
+      \ },
       \ "app/chewy/*_index.rb": {
       \   "command": "chewy",
       \   "template":
