@@ -8,3 +8,7 @@
 .ssh/*.pem
 .ssh/*.pub
 .ssh/known_hosts
+
+localhost-key.pem
+localhost.pem
+/zsh

@@ -65,15 +65,14 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_TMUX_AUTOSTART=true
 plugins=(
   git
-  heroku
   tmux
+  heroku
+  aws
   docker
   docker-compose
-  aws
   yarn
   zsh-syntax-highlighting
   zsh-autosuggestions
-  zsh_reload
   web-search
   redis-cli
 )
@@ -92,6 +91,7 @@ alias crit="cordova run ios --target='iPhone-6s, 9.3'"
 alias ctags_rails="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
 alias generate_random_password="openssl rand -base64 16"
 
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # rbenv

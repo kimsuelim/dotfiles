@@ -12,6 +12,7 @@ brew upgrade
 brew tap homebrew/cask-fonts
 brew tap aws/tap
 brew tap heroku/brew && brew install heroku
+brew tap timescale/brew && brew install timescaledb
 
 # dmg
 brew install iterm2
@@ -24,10 +25,13 @@ brew install font-mononoki-nerd-font
 
 # Packages
 brew install zsh
+brew install zsh-completion
+brew install zsh-autosuggestions
 brew install tmux
 brew install tmuxinator
 brew install vim
 brew install git
+brew install gh
 brew install hub
 brew install tig
 brew install ripgrep
@@ -48,11 +52,15 @@ brew install awscli
 brew install aws-sam-cli
 brew install nodenv node-build
 brew install jenv
+brew install mvn
 brew install kotlin
 brew install go
 # brew install crystal-lang
 # brew install elixir
 # brew install docker docker-compose docker-machine
+brew install fastlane
+brew install firebase-cli
+brew install jetbrains-toolbox
 
 # Mysql
 brew install mysql
@@ -94,7 +102,6 @@ brew install htop-osx
 brew install jq
 brew install keychain
 brew install libffi
-brew install openssl
 brew install parallel
 brew install proctools
 brew install pssh
@@ -110,6 +117,7 @@ brew install wget
 
 # dmg 
 brew install paw
+# brew install insomnia
 brew install authy
 brew install imageoptim
 brew install iina
@@ -117,7 +125,11 @@ brew install macdown
 brew install github
 brew install dropbox
 brew install firefox
-brew install android-studio
+brew install flipper
+# brew install android-studio
+# brew install homebrew/cask-versions/android-studio-preview-beta
+# brew install intellij-idea
+# brew install intellij-idea-ce
 brew install folx
 brew install mjml
 brew install ngrok
@@ -126,7 +138,6 @@ brew install ngrok
 # brew install macvim
 # brew install virtualbox
 # brew install vagrant
-# brew install intellij-idea-ce
 # brew cask install calibre
 # brew install gog-galaxy
 

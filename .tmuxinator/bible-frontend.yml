@@ -1,5 +1,5 @@
 name: bible-frontend
-root: ~/dev/bible-frontend
+root: ~/dev/create_react_apps/bible-frontend
 
 windows:
   - editor: vi

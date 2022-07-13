@@ -1,17 +1,14 @@
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="$HOME/bin:$PATH"
-
 function export_path_if_exists { [[ -d "$1" ]] && export PATH="$1:$PATH" }
 
 export GOPATH=$HOME
 export_path_if_exists "$GOPATH/bin"
-export_path_if_exists "$HOME/.rbenv/bin" && eval "$(rbenv init --no-rehash - zsh)"
-export_path_if_exists /usr/local/share/git-core/contrib/workdir
-export_path_if_exists /usr/local/share/git-core/contrib/diff-highlight
-export_path_if_exists /usr/local/share/npm/bin && {
-  export NODE_PATH="/usr/local/share/npm/lib/node_modules"
-}
+
+export ANDROID_HOME="/Users/surimkim/Library/Android/sdk"
+export_path_if_exists "$ANDROID_HOME/tools"
+export_path_if_exists "$ANDROID_HOME/platform-tools"
+
+export_path_if_exists /opt/homebrew/share/git-core/contrib/workdir
+export_path_if_exists /opt/homebrew/share/git-core/contrib/diff-highlight
 
 if [ -d /usr/local/lib/pkgconfig ]; then
   export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
@@ -26,30 +23,11 @@ if type hub > /dev/null; then
 fi
 
 if [ "Darwin" = "$(uname)" ]; then
-  if [ -x /usr/libexec/java_home ]; then
-    export JAVA_HOME="$(/usr/libexec/java_home)"
-    export_path_if_exists "$JAVA_HOME/bin"
-  fi
-
   export_path_if_exists "/usr/local/opt/coreutils/libexec/gnubin"
 
-  export RUBY_CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline --with-openssl-dir=/usr/local/opt/openssl"
+  # export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+  # export RUBY_CONFIGURE_OPTS="--with-readline-dir=/opt/homebrew/opt/readline --with-openssl-dir=/opt/homebrew/opt/openssl@1.1"
 fi
-
-export ANDROID_HOME="/Users/kimsuelim/Library/Android/sdk"
-export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
-
-# rbenv
-eval "$(rbenv init -)"
-
-# rbenv
-eval "$(nodenv init -)"
-
-# jenv
-eval "$(jenv init -)"
-
-# docker-machine
-# eval "$(docker-machine env)"
 
 export DISABLE_AUTO_TITLE=true
 export EDITOR='vi'

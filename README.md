@@ -11,6 +11,8 @@ sudo xcodebuild -license accept
 
 # Installing Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/surimkim/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew doctor
 
 git clone https://github.com/kimsuelim/dotfiles.git
@@ -57,7 +59,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ### rbenv
 
 ```
-brew install rbenv rbenv-build
+brew install rbenv ruby-build
 mkdir -p $(rbenv root)
 ln -nfs $PWD/default-gems $(rbenv root)/default-gems
 mkdir -p $(rbenv root)/plugins
@@ -79,8 +81,8 @@ mkdir -p $(nodenv root)
 
 eval "$(nodenv init -)"
 
-nodenv install 12.22.7
-nodenv global 12.22.7
+nodenv install 16.13.0
+nodenv global 16.13.0
 npm install mjml
 node -v
 nodenv rehash
@@ -93,21 +95,27 @@ brew install jenv
 mkdir -p $(jenv root)
 
 eval "$(jenv init -)"
+jenv doctor
 
-brew install java
+# To make sure JAVA_HOME is set, make sure to enable the export plugin:
+jenv enable-plugin export
+exec $SHELL -l
 
-jenv global 11
-jenv rehash
-```
-
-### Crystal
-
-```
-brew install crystal-lang
+brew install temurin8
+jenv add $(/usr/libexec/java_home)
+jenv versions
+jenv global 1.8
+java -version
 ```
 
 ### Kotlin
 
 ```
 brew install kotlin
+```
+
+### Crystal
+
+```
+brew install crystal-lang
 ```
