@@ -11,15 +11,10 @@ if [ ! -d ~/.rbenv ]; then
 
   eval "$(rbenv init -)"
 
-  brew install readline
-  brew install openssl@1.1
-  RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" rbenv install 3.0.3
-  rbenv global  3.0.3
+  rbenv install 3.1.2
+  rbenv global 3.1.2
   ruby -v
   rbenv rehash
-
-  # mysql2 gem with mysql@5.7 brew
-  # bundle config --global build.mysql2 --with-opt-dir="$(brew --prefix openssl)"
 fi
 
 if [ ! -d ~/.nodenv ]; then
@@ -28,10 +23,9 @@ if [ ! -d ~/.nodenv ]; then
 
   eval "$(nodenv init -)"
 
-  nodenv install 16.13.0
-  nodenv global 16.13.0
+  nodenv install 16.16.0
+  nodenv global 16.16.0
   node -v
-  npm install -g mjml
   nodenv rehash
 fi
 
@@ -46,9 +40,9 @@ if [ ! -d ~/.jenv ]; then
   jenv enable-plugin export
   exec $SHELL -l
 
-  brew install temurin8
+  brew install temurin11
   jenv add $(/usr/libexec/java_home)
   jenv versions
-  jenv global 1.8
+  jenv global 11.0
   java -version
 fi

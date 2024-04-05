@@ -26,7 +26,7 @@ cd dotfiles
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 git clone https://github.com/dracula/zsh.git
 cd zsh
@@ -67,8 +67,8 @@ git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/
 
 eval "$(rbenv init -)"
 
-rbenv install 3.0.3
-rbenv global 3.0.3
+rbenv install 3.1.2
+rbenv global 3.1.2
 ruby -v
 rbenv rehash
 ```
@@ -81,9 +81,8 @@ mkdir -p $(nodenv root)
 
 eval "$(nodenv init -)"
 
-nodenv install 16.13.0
-nodenv global 16.13.0
-npm install mjml
+nodenv install 16.16.0
+nodenv global 16.16.0
 node -v
 nodenv rehash
 ```
@@ -101,10 +100,10 @@ jenv doctor
 jenv enable-plugin export
 exec $SHELL -l
 
-brew install temurin8
+brew install temurin11
 jenv add $(/usr/libexec/java_home)
 jenv versions
-jenv global 1.8
+jenv global 11.0
 java -version
 ```
 
