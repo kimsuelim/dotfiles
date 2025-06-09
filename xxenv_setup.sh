@@ -11,8 +11,8 @@ if [ ! -d ~/.rbenv ]; then
 
   eval "$(rbenv init -)"
 
-  rbenv install 3.1.2
-  rbenv global 3.1.2
+  rbenv install 3.3.1
+  rbenv global 3.3.1
   ruby -v
   rbenv rehash
 fi
@@ -23,8 +23,8 @@ if [ ! -d ~/.nodenv ]; then
 
   eval "$(nodenv init -)"
 
-  nodenv install 16.16.0
-  nodenv global 16.16.0
+  nodenv install 20.12.2
+  nodenv global 20.12.2
   node -v
   nodenv rehash
 fi
@@ -40,9 +40,9 @@ if [ ! -d ~/.jenv ]; then
   jenv enable-plugin export
   exec $SHELL -l
 
-  brew install temurin11
+  brew install --cask temurin@17
   jenv add $(/usr/libexec/java_home)
   jenv versions
-  jenv global 11.0
+  jenv global 17.0
   java -version
 fi

@@ -103,7 +103,7 @@ export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
 
 # rbenv
 eval "$(rbenv init -)"
@@ -121,5 +121,14 @@ eval "$(jenv init -)"
 #
 # aliases
 alias crit="cordova run ios --target='iPhone-6s, 9.3'"
-alias ctags_rails="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
+# alias ctags_rails="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
+alias ctags_rails="ctags -R --languages=ruby --exclude=.git --exclude=log ."
 alias generate_random_password="openssl rand -base64 16"
+# alias kamal='docker run -it --rm -v "${PWD}:/workdir" -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" -e SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/basecamp/kamal:latest'
+
+# Set private env 
+[ -f ~/.zshlocal ] && source ~/.zshlocal
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+. "$HOME/.local/bin/env"

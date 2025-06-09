@@ -1,0 +1,29 @@
+name: pandaspeed
+root: ~/dev/railsProject/pandaspeed
+
+windows:
+  - editor: nvim
+  - server:
+      layout: main-vertical
+      panes:
+        - bin/dev
+        - docker start timescaledb && bundle exec rake solid_queue:start
+        - docker run -p 1080:1080 -p 1025:1025 maildev/maildev
+        - v2ray run -c config/v2ray.config.json
+        - cloudflared tunnel run local
+        # - lt --subdomain host --port 3000
+  - console: bin/rails c
+  - db: bin/rails db
+  - logs:
+      layout: even-horizontal
+      panes:
+        - tail -f log/development.log
+        - tail -f ~/Library/Logs/puma-dev.log
+  - terminal:
+  - remote:
+  - desktop:
+      layout: main-vertical
+      panes:
+        - cd ../../goProject/pandaspeed-desktop && docker-compose -f docker-compose.dev.yml up --build
+        - cd ../../goProject/pandaspeed-desktop/gui && yarn serve
+  - ansible: cd ../../devopsProject/panda-ansible-manager

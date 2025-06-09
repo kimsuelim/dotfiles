@@ -17,13 +17,18 @@ brew tap heroku/brew && brew install heroku
 
 # dmg
 brew install iterm2
+brew install --cask warp
+brew install --cask kitty
 brew install google-chrome
 brew install visual-studio-code
 brew install jetbrains-toolbox
+brew install bitwarden
 
 # fonts
+brew install font-cascadia-code
 brew install font-hurmit-nerd-font
 brew install font-mononoki-nerd-font
+# brew install --cask homebrew/cask-fonts/font-caskaydia-cove-nerd-font
 
 # Packages
 brew install zsh
@@ -32,13 +37,15 @@ brew install zsh-autosuggestions
 brew install tmux
 brew install tmuxinator
 brew install vim
+brew install neovim
 brew install git
+brew install lazygit
 brew install gh
 brew install hub
 brew install tig
 brew install ripgrep
 brew install fzf
-$(brew --prefix)/opt/fzf/install
+brew install bat
 brew install universal-ctags
 
 # make locally trusted development certificates
@@ -66,9 +73,6 @@ brew install sqlite
 # Mysql
 # brew install mysql
 # brew services start mysql
-# brew install mysql@5.7
-# brew services start mysql@5.7
-# brew link mysql@5.7 --force
 # for MySQL, Time zone support must be installed on the server.
 # mysql_tzinfo_to_sql /usr/share/zoneinfo | sed -e "s/Local time zone must be set--see zic manual page/local/" | mysql -u root mysql
 
@@ -79,9 +83,6 @@ brew install libpq
 # Postgresql
 # brew install postgresql
 # brew services start postgresql
-# brew install postgresql@13
-# brew services start postgresql@13
-# brew link postgresql@13 --force
 
 # Redis
 # brew install redis
@@ -117,20 +118,21 @@ brew install wget
 # brew install tcpflow
 # brew install wireshark
 
-# dmg 
+# dmg
 brew install iina
-brew install dropbox
 brew install folx
 brew install ngrok
 brew install imageoptim
-brew install --cask docker
-# brew install paw
+brew install docker --cask
+brew install rapidapi --cask
+brew install calibre
+# brew install dropbox
 # brew install google-backup-and-sync
 # brew install sublime-text
 # brew install macvim
 # brew install virtualbox
 # brew install vagrant
-# brew install gog-galaxy
+# brew install gog-galaxy --cask
 # brew install macdown
 # brew install github
 # brew install firefox

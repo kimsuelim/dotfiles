@@ -7,20 +7,32 @@
 	branch = auto
 	interactive = auto
   ui = true
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+; [pager]
+; 	log = diff-highlight | less
+; 	show = diff-highlight | less
+; 	diff = diff-highlight | less
 [core]
   quotepath = false
   precomposeunicode = true
   excludesfile = ~/.gitignore
   editor = vim -f
   fscache = true
-[push]
-  default = simple
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  side-by-side = true
+  # delta detects terminal colors automatically; set one of these to disable auto-detection
+  # dark = true
+  # light = true
+[merge]
+  conflictstyle = diff3
 [diff]
 	algorithm = patience
+  colorMoved = default
+[push]
+  default = simple
 [alias]
 	s = status --short --branch
 	st = status

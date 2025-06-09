@@ -8,7 +8,6 @@
 xcode-select --install
 sudo xcodebuild -license accept
 
-
 # Installing Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/surimkim/.zprofile
@@ -49,6 +48,15 @@ tmux source ~/.tmux.conf
 # Press prefix + I (capital I, as in Install) to fetch the plugin.
 ```
 
+### LazyVim
+
+```
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+cd ~/.config/nvim
+rm -rf .git
+```
+
+
 ### Vim
 
 ```sh
@@ -67,8 +75,8 @@ git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/
 
 eval "$(rbenv init -)"
 
-rbenv install 3.1.2
-rbenv global 3.1.2
+rbenv install 3.3.1
+rbenv global 3.3.1
 ruby -v
 rbenv rehash
 ```
@@ -81,8 +89,8 @@ mkdir -p $(nodenv root)
 
 eval "$(nodenv init -)"
 
-nodenv install 16.16.0
-nodenv global 16.16.0
+nodenv install 20.12.2
+nodenv global 20.12.2
 node -v
 nodenv rehash
 ```
@@ -100,10 +108,10 @@ jenv doctor
 jenv enable-plugin export
 exec $SHELL -l
 
-brew install temurin11
+brew install --cask temurin@17
 jenv add $(/usr/libexec/java_home)
 jenv versions
-jenv global 11.0
+jenv global 17.0
 java -version
 ```
 
@@ -111,10 +119,4 @@ java -version
 
 ```
 brew install kotlin
-```
-
-### Crystal
-
-```
-brew install crystal-lang
 ```

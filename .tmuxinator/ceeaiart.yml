@@ -1,0 +1,21 @@
+name: ceeaiart
+root: ~/dev/railsProject/ceeaiart
+
+windows:
+  - editor: nvim
+  - server:
+      layout: main-vertical
+      panes:
+        - bin/dev
+        - bundle exec rake solid_queue:start
+        - docker run -p 1080:1080 -p 1025:1025 maildev/maildev
+  - console: bin/rails c
+  - db: bin/rails db
+  - logs:
+      layout: even-horizontal
+      panes:
+        - tail -f log/development.log
+        - tail -f ~/Library/Logs/puma-dev.log
+  - terminal:
+  - remote:
+  - ansible: cd ../../devopsProject/panda-ansible-manager

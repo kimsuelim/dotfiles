@@ -12,3 +12,4 @@
 localhost-key.pem
 localhost.pem
 /zsh
+.zshlocal

@@ -18,6 +18,7 @@ set smartindent
 set et
 set backspace=2                   " make backspace work like most other apps"
 
+set autowrite
 set autoread
 set belloff=all
 set complete-=i
@@ -184,7 +185,29 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 
+" tools
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'Yggdroot/indentLine'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+Plug 'janko-m/vim-test'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'mhinz/vim-grepper'
+Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
+Plug 'honza/vim-snippets'
+Plug 'vim-scripts/YankRing.vim'
+" Plug 'godlygeek/tabular'
+
+" modern vim
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'dense-analysis/ale'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " language
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'hail2u/vim-css3-syntax'
 " Plug 'pangloss/vim-javascript'
@@ -199,28 +222,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'jimenezrick/vimerl'
 " Plug 'rhysd/vim-crystal'
 " Plug 'udalov/kotlin-vim'
-
-" tools
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'Yggdroot/indentLine'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'benmills/vimux'
-Plug 'janko-m/vim-test'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'mhinz/vim-grepper'
-Plug 'Raimondi/delimitMate' " Automatic closing of quotes, parenthesis, brackets, etc.
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'vim-scripts/YankRing.vim'
-" Plug 'godlygeek/tabular'
-
-" modern vim
-Plug 'dense-analysis/ale'
-Plug '/usr/local/opt/fzf'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 " color theme
 Plug 'dracula/vim'
@@ -255,17 +256,6 @@ set laststatus=2
 " vim-gitgutter
 let g:gitgutter_enabled = 1
 
-" vim-ruby
-" compiler ruby         " Enable compiler support for ruby
-" let g:ruby_operators = 1
-" let g:ruby_space_errors = 1
-" let g:ruby_fold = 1
-" let g:ruby_no_expensive = 0
-" let g:ruby_minlines = 500
-" let g:rubycomplete_buffer_loading = 1
-" let g:rubycomplete_classes_in_global = 1
-" let g:rubycomplete_rails = 1
-
 " vim-test
 " let test#strategy = "vimux"
 let test#strategy = "vimterminal"
@@ -281,6 +271,15 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-t> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
+
+" coc
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+let g:coc_global_extensions = ['coc-snippets', 'coc-css', 'coc-json', 'coc-yaml', 'coc-tabnine', 'coc-html', '@yaegassy/coc-tailwindcss3']
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
 
 " ale
 let g:ale_linter_aliases = {'javascriptreact': ['css', 'javascript']}
@@ -308,8 +307,7 @@ let g:rails_projections = {
       \ "app/services/*_service.rb": {
       \   "command": "service",
       \   "test": [
-      \     "test/unit/{}_service_test.rb",
-      \     "spec/models/{}_service_spec.rb"
+      \     "test/services/{}_service_test.rb",
       \   ],
       \   "keywords": "process version"
       \ },
@@ -332,17 +330,6 @@ let g:rails_projections = {
       \   ],
       \   "keywords": "process version"
       \ },
-      \ "app/uploaders/*_uploader.rb": {
-      \   "command": "uploader",
-      \   "template":
-      \     ["class {camelcase|capitalize|colons}Uploader < "
-      \      . "CarrierWave::Uploader::Base", "end"],
-      \   "test": [
-      \     "test/unit/{}_uploader_test.rb",
-      \     "spec/models/{}_uploader_spec.rb"
-      \   ],
-      \   "keywords": "process version"
-      \ },
       \ "app/policies/*_policy.rb": {
       \   "command": "policy",
       \   "template":
@@ -356,8 +343,8 @@ let g:rails_projections = {
       \ }}
 
 if has("gui_running")
-  set guioptions=-t
-  set guifont=Hermit\ medium:h14
+  " set guioptions=-t
+  " set guifont=Hermit\ medium:h14
 else
   " set termguicolors
   let g:dracula_italic = 0
@@ -412,3 +399,26 @@ function! Preserve(command)
 endfunction
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
+
+
+" go-tutorial
+" map <C-n> :cnext<CR>
+" map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+" autocmd FileType go nmap <leader>gb  <Plug>(go-build)
+autocmd FileType go nmap <leader>gr  <Plug>(go-run)
+autocmd FileType go nmap <leader>gt  <Plug>(go-test)
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
